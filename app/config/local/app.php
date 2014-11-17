@@ -15,4 +15,17 @@ return array(
 
 	'debug' => true,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Autoloaded Service Providers
+    |--------------------------------------------------------------------------
+    |
+    | Add service provider to local environment
+    |
+    */
+
+    'providers' => append_config(array(
+        'Way\Generators\GeneratorsServiceProvider'
+    ))
+
 );
