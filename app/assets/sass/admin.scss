@@ -4,7 +4,8 @@ $h-border-color: #f8d3a4;
 $h-divider-color: #f3b360;
 $h-btn-color: #fbe9d1;
 $h-title-color: #f6c88d;
-$menu-text-color: #68625E;
+$menu-text-color: #85807d;
+$menu-current-color: #f1a84b;
 
 .outer-container {
   background: #fff;
@@ -124,7 +125,7 @@ input[type=text] {
 .menu {
   background: $bg-color;
   border-top: 1px solid $border-color;
-  padding: 24px 0;
+  padding: 26px 0;
   text-align: center;
 }
 
@@ -139,6 +140,6 @@ input[type=text] {
 
 .current {
   a {
-    color: $accent-color;
+    color: $menu-current-color;
   }
 }

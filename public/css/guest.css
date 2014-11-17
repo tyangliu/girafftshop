@@ -87,7 +87,8 @@ input[type=text], input[type=password], select {
 
 input[type=text]:focus, input[type=password]:focus, select:focus {
   outline: 0;
-  border: 1px solid #EF941B; }
+  border: 1px solid #EF941B;
+  padding: 18px; }
 
 input[type="checkbox"] {
   display: none; }

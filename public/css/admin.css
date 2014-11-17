@@ -87,7 +87,8 @@ input[type=text], input[type=password], select {
 
 input[type=text]:focus, input[type=password]:focus, select:focus {
   outline: 0;
-  border: 1px solid #EF941B; }
+  border: 1px solid #EF941B;
+  padding: 18px; }
 
 input[type="checkbox"] {
   display: none; }
@@ -225,14 +226,14 @@ input[type=text] {
 .menu {
   background: #F6F6F6;
   border-top: 1px solid #E5E5E5;
-  padding: 24px 0;
+  padding: 26px 0;
   text-align: center; }
 
 .menu-item {
   display: inline-block;
   margin: 0 18px; }
   .menu-item a {
-    color: #68625E; }
+    color: #85807d; }
 
 .current a {
-  color: #EF941B; }
+  color: #f1a84b; }
