@@ -1,0 +1,144 @@
+@import 'main';
+
+$h-border-color: #f8d3a4;
+$h-divider-color: #f3b360;
+$h-btn-color: #fbe9d1;
+$h-title-color: #f6c88d;
+$menu-text-color: #68625E;
+
+.outer-container {
+  background: #fff;
+  padding: 40px;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+}
+
+.content {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.header {
+  margin: 0 auto;
+  position: relative;
+  background: $accent-color;
+  padding-bottom: 40px;
+}
+
+h1 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+dl{
+  width: 46%;
+  margin: 0 auto;
+}
+
+input[type=text] {
+  width: 92%;
+}
+
+.form-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.drop-down {
+  width: 40%;
+}
+
+.title-wrap {
+  margin: 0 auto;
+  padding-top: 60px;
+  text-align: center;
+}
+
+.logo {
+  width: 328px;
+  height: 92px;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.header-title {
+  display: inline-block;
+  color: $h-title-color;
+  font-size: 2em;
+  letter-spacing: 2px;
+  font-weight: $bold-weight;
+  text-transform: uppercase;
+  transform: translateY(-24px);
+  margin-left: 14px;
+}
+
+.toolbar {
+  margin: 30px auto 0;
+  text-align: center;
+  position: relative;
+}
+
+.icon-set {
+  display: inline-block;
+  padding: 0px 20px 0 0;
+  border-right: 1px solid $h-divider-color;
+  margin-right: 20px;
+  height: 68px;
+}
+
+.toolbar-icon {
+  display: inline-block;
+  height: 40px;
+}
+
+.toolbar-icon img {
+  width: 36px;
+  height: 40px;
+  display: block;
+  margin-top: 11px;
+}
+
+.cart-label {
+  margin-right: 20px;
+}
+
+.logout-button {
+  padding: 14px 24px;
+  background: $accent-color;
+  border: 1px solid $h-border-color;
+  cursor:pointer;
+  border-radius: 7px;
+  font-size: 1em;
+  font-family:$primary-font;
+  font-weight: $bold-weight;
+  color: $h-btn-color;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.logout-button:focus {
+  outline: none;
+}
+
+.menu {
+  background: $bg-color;
+  border-top: 1px solid $border-color;
+  padding: 24px 0;
+  text-align: center;
+}
+
+.menu-item {
+  display: inline-block;
+  margin: 0 18px;
+
+  a{
+    color: $menu-text-color;
+  }
+}
+
+.current {
+  a {
+    color: $accent-color;
+  }
+}
