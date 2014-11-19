@@ -20,7 +20,7 @@
         <li><b>Year:</b> {{ $item->year }}</li>
         <li><b>Price:</b> {{ $item->price }}</li>
         <li><b>Stock:</b> {{ $item->stock }}</li>
-        <li><b>LeadSinger:</b> {{ $item->itemLeadSinger->name }}</li>
+        <li><b>LeadSinger:</b> {{ json_encode($item->leadSinger) }}</li>
     </ul>
 @endforeach
 

@@ -120,7 +120,10 @@ return array(
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
-		'Illuminate\Workbench\WorkbenchServiceProvider'
+		'Illuminate\Workbench\WorkbenchServiceProvider',
+        'Laracasts\Commander\CommanderServiceProvider',
+        'Laracasts\Validation\ValidationServiceProvider',
+        'Laracasts\Flash\FlashServiceProvider'
 	),
 
 	/*
@@ -187,7 +190,10 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-
+        'Flash'             => 'Laracasts\Flash\Flash',
+        'CommandHandler'    => 'Laracasts\Commander\CommandHandler',
+        'CommandBus'        => 'Laracasts\Commander\CommandBus',
+        'FormValidator'     => 'Laracasts\Validation\FormValidator',
 	),
 
 );

@@ -14,8 +14,8 @@
         <dd>{{ Form::text('title', null, ['class' => 'form-control']) }}</dd>
 
     {{-- Artist Input --}}
-        <dt class="form-label">{{ Form::label('artist', 'Artist') }}</dt>
-        <dd>{{ Form::text('artist', null, ['class' => 'form-control']) }}</dd>
+        <dt class="form-label">{{ Form::label('leadSingerName', 'Artist') }}</dt>
+        <dd>{{ Form::text('leadSingerName', null, ['class' => 'form-control']) }}</dd>
 
         <dd class="form-button">{{ Form::submit('Find It!') }}</dd>
     </dl>

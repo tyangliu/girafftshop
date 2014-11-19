@@ -21,7 +21,7 @@
 
             <dd class="inline">  {{ Form::submit('Sign In') }} </dd>
             <div class="inline remember-me">
-               <input name="remember" type="checkbox" value="true" id="remember">
+               <input name="remember" type="checkbox" value="1" id="remember">
                <label for="remember"> <span></span> Remember Me!</label>
             </div>
         </dl>

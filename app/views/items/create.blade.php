@@ -58,8 +58,8 @@
         <dd>{{ Form::text('stock', null, ['class' => 'form-control']) }}</dd>
 
     {{-- Lead Singer Input --}}
-        <dt class="form-label">{{ Form::label('leadSinger', 'Lead Singer') }}</dt>
-        <dd>{{ Form::text('leadSinger', null, ['class' => 'form-control']) }}</dd>
+        <dt class="form-label">{{ Form::label('leadSingerName', 'Lead Singer') }}</dt>
+        <dd>{{ Form::text('leadSingerName', null, ['class' => 'form-control']) }}</dd>
 
     {{-- Submit Button --}}
         <dd class="form-button">{{ Form::submit('Add New Item', ['class' => 'btn btn-primary']) }}</dd>

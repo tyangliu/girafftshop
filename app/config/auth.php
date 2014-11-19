@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'model' => 'Customer',
+	'model' => 'GirafftShop\Customers\Customer',
 
 	/*
 	|--------------------------------------------------------------------------

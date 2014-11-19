@@ -1,5 +1,8 @@
 <?php
 
+use GirafftShop\Customers\Customer;
+use GirafftShop\Items\Item;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,7 +15,7 @@
 */
 
 if( ! Auth::check()) $uses = 'SessionsController@create';
-else $uses = 'ItemsController@index';
+else $uses = 'SearchController@create';
 
 Route::get('/', [
     'as'=>'home',
@@ -25,13 +28,12 @@ Route::get('/', [
 Route::get('signup', [
     'as' => 'signup_path',
     'before' => 'guest',
-    'uses' => 'CustomersController@create'
+    'uses' => 'RegistrationController@create'
 ]);
 
 Route::post('signup', [
     'as' => 'signup_path',
-    'before' => 'csrf',
-    'uses'   => 'CustomersController@store'
+    'uses'   => 'RegistrationController@store'
 ]);
 
 /**
@@ -58,7 +60,7 @@ Route::get('logout', [
  */
 Route::post('search', [
     'as' => 'search_path',
-    'uses' => 'ItemsController@search'
+    'uses' => 'SearchController@show'
 ]);
 
 Route::get('items/new', [

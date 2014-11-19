@@ -1,9 +1,30 @@
 <?php
 
+use GirafftShop\Customers\Forms\SignInForm;
+
+/**
+ * Class SessionsController
+ */
 class SessionsController extends \BaseController {
 
-	/**
-	 * Show the form for creating a new resource.
+    /**
+     * @var SignInForm
+     */
+    protected $signInForm;
+
+    /**
+     * @param SignInForm $signInForm
+     */
+    function __construct(SignInForm $signInForm)
+    {
+        $this->signInForm = $signInForm;
+
+        $this->beforeFilter('guest', ['except' => 'destroy']);
+    }
+
+
+    /**
+	 * Show login form
 	 * GET /sessions/create
 	 *
 	 * @return Response
@@ -21,23 +42,24 @@ class SessionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only('username', 'password', 'remember');
+        $input = Input::all();
 
-        $rememberMe = false;
-        if (Input::get('remember') == 'true') {
-            $rememberMe = true;
-        }
+        $this->signInForm->validate($input);
+
+        $remember = 0;
+
+        extract($input);
 
         $attempt = Auth::attempt([
-            'username' => $input['username'],
-            'password' => $input['password']
-        ], $rememberMe);
+            'username' => $username,
+            'password' => $password],
+            $remember
+        );
 
-        if ($attempt) return Redirect::intended('/');
+        if ( $attempt ) return Redirect::intended('/');
 
-        //TODO: change this
-        return Redirect::back()->with('flash_message', 'Invalid credentials')->withInput();
-
+        //TODO: add error message
+        return Redirect::back()->withInput(Input::except('password'));
 	}
 
 	/**

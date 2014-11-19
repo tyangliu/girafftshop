@@ -1,21 +1,23 @@
 <?php
 
+use GirafftShop\Items\Item;
+use GirafftShop\LeadSingers\LeadSinger;
+use GirafftShop\Items\Song;
+use GirafftShop\Items\Forms\AddItemForm;
+use GirafftShop\Items\Forms\EditItemForm;
+use GirafftShop\Items\Commanding\AddItemCommand;
+use GirafftShop\Items\Commanding\EditItemCommand;
+use GirafftShop\LeadSingers\Commanding\AddLeadSingerCommand;
+
 class ItemsController extends BaseController {
 
-	public function index()
-	{
-		return View::make('items.index');
-	}
+    private $addItemForm;
+    private $editItemForm;
 
-    public function search()
+    function __construct(AddItemForm $addItemForm, EditItemForm $editItemForm)
     {
-        $category = Input::get('category');
-        $title = Input::get('title');
-        $singer = Input::get('artist');
-        $data = ['items' => Item::matching($category, $title, $singer)->get()];
-
-        return View::make('items.list', $data);
-
+        $this->addItemForm = $addItemForm;
+        $this->editItemForm = $editItemForm;
     }
 
     public function create()
@@ -30,73 +32,32 @@ class ItemsController extends BaseController {
 
     public function store()
     {
-        $rules = array(
-            'upc' => 'required|integer',
-            'title' => 'required|alpha_num',
-            'type' => 'required|alpha|between:2,3',
-            'category' => 'required|alpha_num',
-            'company' => 'required|alpha_num',
-            'year' => 'required|integer|digits:4',
-            'price' => 'required|integer',
-            'stock' => 'required|integer',
-            'leadSinger' => 'alpha'
-        );
-        $validator = Validator::make(Input::all(), $rules);
+        $this->addItemForm->validate(Input::all());
 
-        //process the login
-        if ($validator->fails()) {
-            return Redirect::route('newItem_path')
-                ->withErrors($validator)
-                ->withInput(Input::all());
-        } else {
-            $input = Input::except('leadSinger');
-            $item = Item::create($input);
+        $this->execute(AddItemCommand::class);
 
-            $leadSinger = Input::get('leadSinger');
-            if ($leadSinger != '')
-            {
-                $itemLeadSinger = new ItemLeadSinger;
-                $itemLeadSinger->name = $leadSinger;
-                $itemLeadSinger->item()->associate($item);
-                $itemLeadSinger->save();
-            }
+        $upc = Input::get('upc');
+        $leadSingerName = Input::get('leadSingerName');
 
-            Session::flash('message', 'Successfully created a item!');
-
-            // TODO: add complete page
-            return Redirect::route('newItem_path');
+        if ($leadSingerName != '') {
+            $this->execute(new AddLeadSingerCommand($leadSingerName, $upc));
         }
+
+
+        Session::flash('message', 'Successfully created the item!');
+
+        // TODO: add complete page
+        return Redirect::route('newItem_path');
     }
 
     public function update()
-    {//validate
-        $rules = array(
-            'upc' => 'required|integer',
-            'price' => 'integer',
-            'stock' => 'required|integer'
-        );
-        $validator = Validator::make(Input::all(), $rules);
+    {
+        $this->editItemForm->validate(Input::all());
 
-        //process the login
-        if ($validator->fails()) {
-            return Redirect::route('editItem_path')
-                ->withErrors($validator)
-                ->withInput(Input::all());
-        } else {
-            //store
-            $upc      = Input::get('upc');
-            $quantity = Input::get('stock');
-            $newPrice = Input::get('price');
-            $item = Item::ofUpc($upc)->first();
-            $item->stock += $quantity;
-            if ($newPrice != '')
-                $item->price = $newPrice;
-            $item->save();
+        $this->execute(EditItemCommand::class);
 
-            //refirect
-            Session::flash('message', 'Successfully updated item!');
-            return Redirect::route('editItem_path');
-        }
+        return Redirect::route('editItem_path');
     }
+
 
 }
