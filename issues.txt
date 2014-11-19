@@ -1,0 +1,53 @@
+DELETE THIS after adding to github
+
+NOTES
+- search can be extended to all models as needed (extend base Repository)
+
+TODO
+
+// MAIN APP:
+
+- make queries/searches case insensitive (located in Repository and ItemRepository)
+- improve searching algorithm (e.g. contains instead of exact match)
+- implement query result ordering and pagination (located in Repository)
+
+- make form validation rules more comprehensive
+- complete mistakes messaging for forms (partially working)
+- add form feedback and related pages (using Flash?)
+
+- song listing for item, cart, orders, returns not yet implemented:
+
+  - (completed) make table definition with migrations
+
+  - add database seeding
+
+  - make 'GirafftShop/<ModelName>s' directory for Model and associated classes
+
+  - make models with defined 2-way relationships (hasMany, hasOne, belongsTo, belongsToMany);
+    getters and setters are not needed anymore
+
+  - make repository class for model (this contains the database CRUD and query logic);
+    (this is a design pattern)
+
+  - make controller class(es) for model
+
+  - create command and command handlers for every operation on the model
+
+  - create form class with validation rules as a field
+
+
+// VIEWS:
+
+- finish generic view layouts (navigation bar, footer)
+- refactor views with less repetition + Presenter
+- refactor sass
+- complete css styling (button effects, dropdown menu styling)
+- make css responsive
+- animations and javascript
+
+// ROUTES:
+
+- reorganize routing (possibly use Route::resource or Route::controller)
+- add user roles (phase 1 (easy using route filters): guest, customer, manager)
+                 (phase 2 (harder(both route and menu links filtering required): clerk, administrator)
+- add 404 error page + other HTTP error pages
