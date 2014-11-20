@@ -1,0 +1,40 @@
+<?php namespace GirafftShop\Orders\Commanding;
+
+
+use CommandHandler;
+use GirafftShop\Repos\OrderRepository;
+use GirafftShop\Orders\Order;
+
+class MakeOrderCommandHandler implements CommandHandler {
+
+    protected $repository;
+
+    function __construct(OrderRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+
+    /**
+     * Handle the command
+     *
+     * @param $command
+     * @return mixed
+     */
+    public function handle($command)
+    {
+        $item = Item::add([
+            'receiptId'     => $command->receiptId,
+            'date'          => $command->date,
+            'cUsername'     => $command->cUsername,
+            'card'          => $command->card,
+            'expiryDate'    => $command->expiryDate,
+            'expectedDate'  => $command->expectedDate,
+            'deliveredDate' => $command->deliveredDate,
+        ]);
+
+        $this->repository->save($item);
+
+        return $item;
+    }
+}

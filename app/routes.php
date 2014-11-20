@@ -81,6 +81,19 @@ Route::post('items/edit', [
     'uses' => 'ItemsController@update'
 ]);
 
+/**
+ * Orders 
+ */ 
+Route::get('orders/new', [
+    'as' => 'newOrder_path',
+    'uses' => 'OrdersController@create'
+]);
+Route::post('orders/new', [
+    'as' => 'newOrder_path',
+    'uses' => 'OrdersController@store'
+]);
+
+
 /* -------- test functions -------- */
 Route::get('test', function() {
 

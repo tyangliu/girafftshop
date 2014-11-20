@@ -19,4 +19,5 @@ class RegistrationForm extends FormValidator {
         'address' => 'required',
         'phone' => 'required|digits:10'
     ];
+
 }
