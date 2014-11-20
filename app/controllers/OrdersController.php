@@ -43,7 +43,14 @@ class OrdersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$this->makeOrderForm->validate(Input::all());
+		$input = Input::all();
+
+		$this->makeOrderForm->validate($input);
+
+		$input['date'] = strtotime($input['date']);
+		$input['expiryDate'] = strtotime($input['expiryDate']);
+		$input['expectedDate'] = strtotime($input['expectedDate']);
+		$input['deliveredDate'] = strtotime($input['deliveredDate']);
 
 		$this->execute(MakeOrderCommand::class);
 

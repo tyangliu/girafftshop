@@ -1,7 +1,6 @@
 <?php namespace GirafftShop\Customers;
 
 use Eloquent, Hash;
-use GirafftShop\Orders\Order;
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Laracasts\Commander\Events\EventGenerator;

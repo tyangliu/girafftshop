@@ -24,6 +24,13 @@
     </ul>
 @endforeach
 
+<h1>Orders</h1>
+<ul>
+@foreach ($orders as $order)
+    <li>{{ json_encode($order) }}</li>
+@endforeach
+</ul>
+
 <h1>Routes</h1>
 
 <ul>

@@ -17,7 +17,7 @@ class OrderRepository extends Repository {
      * @param Order $order
      * @return mixed
      */
-    public function save(Customer $order)
+    public function save(Order $order)
     {
         return $order->save();
     }

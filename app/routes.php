@@ -2,6 +2,7 @@
 
 use GirafftShop\Customers\Customer;
 use GirafftShop\Items\Item;
+use GirafftShop\Orders\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,6 +100,7 @@ Route::get('test', function() {
 
     $data['customers'] = Customer::all();
     $data['items'] = Item::all();
+    $data['orders'] = Order::all();
     return View::make('test', $data);
 });
 

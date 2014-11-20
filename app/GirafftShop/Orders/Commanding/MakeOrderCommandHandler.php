@@ -23,7 +23,7 @@ class MakeOrderCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-        $item = Item::add([
+        $order = Order::make([
             'receiptId'     => $command->receiptId,
             'date'          => $command->date,
             'cUsername'     => $command->cUsername,
@@ -33,8 +33,8 @@ class MakeOrderCommandHandler implements CommandHandler {
             'deliveredDate' => $command->deliveredDate,
         ]);
 
-        $this->repository->save($item);
+        $this->repository->save($order);
 
-        return $item;
+        return $order;
     }
 }
