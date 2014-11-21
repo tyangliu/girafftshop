@@ -97,6 +97,11 @@ Route::post('cart/add', [
     'uses' => 'CartController@store'
 ]);
 
+Route::post('cart/update', [
+    'as' => 'updateCart_path',
+    'uses' => 'CartController@update'
+]);
+
 /**
  * Orders 
  */ 

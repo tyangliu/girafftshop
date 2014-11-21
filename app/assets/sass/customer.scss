@@ -245,14 +245,13 @@ input[type=number].buy-quantity {
 }
 
 .cart-subtotal {
-
 }
 
 .cart-delete {
   text-align: center;
 }
 
-input[type=submit].checkout-button {
+button.checkout-button {
   background-color: #86b521;
   margin-left: 20px;
 }

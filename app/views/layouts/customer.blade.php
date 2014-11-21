@@ -13,7 +13,7 @@
 <body>
     <header class="header">
         <div class="title-wrap">
-            <div class="logo">{{ HTML::image('images/logo.svg', 'GirafftShop') }}</div>
+            <a href="/"><div class="logo">{{ HTML::image('images/logo.svg', 'GirafftShop') }}</div></a>
         </div>
         <div class="toolbar">
             <div class="icon-set">

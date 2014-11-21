@@ -1,7 +1,9 @@
 <?php
 
 use GirafftShop\Items\Commanding\AddToCartCommand;
+use GirafftShop\Items\Commanding\EditCartItemCommand;
 use GirafftShop\Items\Forms\AddToCartForm;
+use GirafftShop\Items\Forms\EditCartItemForm;
 use GirafftShop\Repos\ItemRepository;
 use Illuminate\Session\Store;
 
@@ -9,16 +11,19 @@ class CartController extends \BaseController {
 
     protected $session;
     protected $addToCartForm;
+    protected $editCartItemForm;
     protected $repository;
 
-    function __construct(Store $session, AddToCartForm $addToCartForm, ItemRepository $repository)
+    function __construct(Store $session, AddToCartForm $addToCartForm, EditCartItemForm $editCartItemForm, ItemRepository $repository)
     {
         $this->session = $session;
         $this->repository = $repository;
         $this->addToCartForm = $addToCartForm;
+        $this->editCartItemForm = $editCartItemForm;
     }
 
-    public function store() {
+    public function store()
+    {
 
         $this->addToCartForm->validate(Input::all());
 
@@ -38,27 +43,46 @@ class CartController extends \BaseController {
 
     }
 
-    // inefficient implementation
-    public function removeCartItem() {
-
-    }
-
-    public function index() {
+    public function index()
+    {
         $cart = $this->session->get('cart');
 
         $items = [];
 
         foreach ($cart as $upc => $quantity ) {
-            $items =
-                array_add(
-                    $items,
-                    $quantity,
-                    $this->repository->getByField('upc', $upc)->first()
-                );
+            $items = array_add(
+                $items,
+                $upc,
+                ['quantity' => $quantity, 'entity' => $this->repository->getByField('upc', $upc)->first()]
+            );
         }
 
         $data['items'] = $items;
 
         return View::make('cart.index', $data);
+    }
+
+    public function update()
+    {
+        $input = Input::except('_token');
+        foreach ($input as $upc => $params ) {
+            $this->editCartItemForm->validate($params);
+            $delete = '0';
+            extract($params);
+
+            if (($quantity <= $this->repository->getByField('upc',$item_upc)->first()->stock) || ($delete == '1'))
+            {
+                $this->execute(EditCartItemCommand::class, [
+                    'item_upc' => $item_upc,
+                    'quantity' => $quantity,
+                    'delete'   => $delete
+                ]);
+            }
+            else
+            {
+                return Redirect::back();
+            }
+        }
+        return Redirect::back();
     }
 }
