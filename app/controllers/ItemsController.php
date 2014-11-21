@@ -1,13 +1,13 @@
 <?php
 
-use GirafftShop\Items\Item;
-use GirafftShop\LeadSingers\LeadSinger;
-use GirafftShop\Items\Song;
-use GirafftShop\Items\Forms\AddItemForm;
-use GirafftShop\Items\Forms\EditItemForm;
-use GirafftShop\Items\Commanding\AddItemCommand;
-use GirafftShop\Items\Commanding\EditItemCommand;
-use GirafftShop\LeadSingers\Commanding\AddLeadSingerCommand;
+use GirafftShop\Entities\Item;
+use GirafftShop\Entities\LeadSinger;
+use GirafftShop\Entities\Song;
+use GirafftShop\Forms\AddItemForm;
+use GirafftShop\Forms\EditItemForm;
+use GirafftShop\Commands\AddItemCommand;
+use GirafftShop\Commands\EditItemCommand;
+use GirafftShop\Commands\AddLeadSingerCommand;
 
 class ItemsController extends BaseController {
 

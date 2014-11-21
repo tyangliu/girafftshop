@@ -1,7 +1,7 @@
 <?php
 
-use GirafftShop\Customers\Forms\RegistrationForm;
-use GirafftShop\Customers\Commanding\RegisterCustomerCommand;
+use GirafftShop\Forms\RegistrationForm;
+use GirafftShop\Commands\RegisterCustomerCommand;
 
 /**
  * Class RegistrationController

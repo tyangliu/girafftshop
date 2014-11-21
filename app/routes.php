@@ -1,8 +1,8 @@
 <?php
 
-use GirafftShop\Customers\Customer;
-use GirafftShop\Items\Item;
-use GirafftShop\Orders\Order;
+use GirafftShop\Entities\Customer;
+use GirafftShop\Entities\Item;
+use GirafftShop\Entities\Order;
 
 /*
 |--------------------------------------------------------------------------
