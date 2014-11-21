@@ -58,6 +58,9 @@ body {
 .inline {
   display: inline-block; }
 
+.clear {
+  clear: both; }
+
 p {
   margin: 10px 0; }
 
@@ -69,12 +72,40 @@ h1 {
   color: #68625E;
   margin: 20px 0; }
 
+h2 {
+  font-family: "museo-slab", serif;
+  font-size: 1.7em;
+  font-weight: 700;
+  line-height: 1.5em;
+  color: #68625E;
+  margin: 20px 0; }
+
 a {
   font-weight: 700;
   color: #EF941B;
   text-decoration: none; }
 
-input[type=text], input[type=password], select {
+table {
+  border-collapse: separate;
+  border: 1px solid #E5E5E5;
+  border-radius: 7px; }
+
+td, th {
+  border-left: 1px solid #E5E5E5;
+  border-top: 1px solid #E5E5E5;
+  padding: 20px 30px;
+  text-align: left; }
+
+th {
+  font-weight: 700; }
+
+tr:first-child td, tr:first-child th {
+  border-top: none; }
+
+td:first-child, th:first-child {
+  border-left: none; }
+
+input[type=text], input[type=password], input[type=number], select {
   font-family: "museo-sans", sans-serif;
   font-weight: 300;
   font-size: 1em;
@@ -85,7 +116,14 @@ input[type=text], input[type=password], select {
   background-color: #F6F6F6;
   margin: 10px 0; }
 
+<<<<<<< Updated upstream
 input[type=text]:focus, input[type=password]:focus, select:focus {
+=======
+input[type=text].has-error, input[type=password].has-error, input[type=number].has-error {
+  border-color: #ff0000; }
+
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, select:focus {
+>>>>>>> Stashed changes
   outline: 0;
   border: 1px solid #EF941B;
   padding: 18px; }
@@ -107,7 +145,7 @@ input[type="checkbox"]:checked + label span {
   background: url('../images/checkbox.svg') -18px top no-repeat;
   background-size: 36px 18px; }
 
-input[type=submit] {
+button, input[type=submit] {
   padding: 18px 38px;
   background: #EF941B;
   border: 0 none;
@@ -172,9 +210,6 @@ input[type=submit] {
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%); }
-
-.clear {
-  clear: both; }
 
 .giraffe {
   width: 440px;
