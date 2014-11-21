@@ -1,8 +1,8 @@
 <?php
 
-use GirafftShop\Entities\Customer;
-use GirafftShop\Entities\Item;
-use GirafftShop\Entities\Order;
+use GirafftShop\Customers\Customer;
+use GirafftShop\Items\Item;
+use GirafftShop\Orders\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ Route::get('logout', [
 /**
  * Item Search
  */
-Route::post('search', [
+Route::get('search', [
     'as' => 'search_path',
     'uses' => 'SearchController@show'
 ]);
@@ -82,6 +82,21 @@ Route::post('items/edit', [
     'uses' => 'ItemsController@update'
 ]);
 
+Route::get('items/{upc}', [
+    'as' => 'showItem_path',
+    'uses' => 'ItemsController@show'
+]);
+
+Route::get('cart', [
+    'as' => 'cart_path',
+    'uses' => 'CartController@index'
+]);
+
+Route::post('cart/add', [
+    'as' => 'addToCart_path',
+    'uses' => 'CartController@store'
+]);
+
 /**
  * Orders 
  */ 
@@ -102,13 +117,4 @@ Route::get('test', function() {
     $data['items'] = Item::all();
     $data['orders'] = Order::all();
     return View::make('test', $data);
-});
-
-Route::get('getEnv', function() {
-    if (App::environment('local')) {
-        return 'local';
-    }
-    if (App::environment('production')) {
-        return 'production';
-    }
 });

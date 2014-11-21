@@ -1,6 +1,13 @@
 <?php namespace GirafftShop\Items;
 
+use PresentableTrait;
+
 class Item extends \Eloquent {
+
+    use PresentableTrait;
+
+    protected $presenter = 'GirafftShop\Presenters\ItemPresenter';
+
     protected $guarded = [];
 
     public function leadSinger()

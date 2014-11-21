@@ -1,6 +1,6 @@
 <?php namespace GirafftShop\Items\Forms;
 
-use Laracasts\Validation\FormValidator;
+use FormValidator;
 
 class EditItemForm extends FormValidator {
     /**

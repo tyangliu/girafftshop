@@ -1,6 +1,6 @@
 <?php namespace GirafftShop\Orders\Forms;
 
-use Laracasts\Validation\FormValidator;
+use FormValidator;
 
 class MakeOrderForm extends FormValidator {
     /**

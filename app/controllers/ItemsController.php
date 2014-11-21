@@ -1,23 +1,23 @@
 <?php
 
-use GirafftShop\Entities\Item;
-use GirafftShop\Entities\LeadSinger;
-use GirafftShop\Entities\Song;
-use GirafftShop\Forms\AddItemForm;
-use GirafftShop\Forms\EditItemForm;
-use GirafftShop\Commands\AddItemCommand;
-use GirafftShop\Commands\EditItemCommand;
-use GirafftShop\Commands\AddLeadSingerCommand;
+use GirafftShop\Items\Forms\AddItemForm;
+use GirafftShop\Items\Forms\EditItemForm;
+use GirafftShop\Items\Commanding\AddItemCommand;
+use GirafftShop\Items\Commanding\EditItemCommand;
+use GirafftShop\LeadSingers\Commanding\AddLeadSingerCommand;
+use GirafftShop\Repos\ItemRepository;
 
 class ItemsController extends BaseController {
 
     private $addItemForm;
     private $editItemForm;
+    private $repository;
 
-    function __construct(AddItemForm $addItemForm, EditItemForm $editItemForm)
+    function __construct(AddItemForm $addItemForm, EditItemForm $editItemForm, ItemRepository $repository)
     {
         $this->addItemForm = $addItemForm;
         $this->editItemForm = $editItemForm;
+        $this->repository = $repository;
     }
 
     public function create()
@@ -57,6 +57,12 @@ class ItemsController extends BaseController {
         $this->execute(EditItemCommand::class);
 
         return Redirect::route('editItem_path');
+    }
+
+    public function show( $upc )
+    {
+        $data = ['item' => $this->repository->getByField('upc', $upc)->first() ];
+        return View::make('items.show', $data);
     }
 
 

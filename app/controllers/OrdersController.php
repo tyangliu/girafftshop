@@ -1,8 +1,8 @@
 <?php
 
-use GirafftShop\Entities\Order;
-use GirafftShop\Forms\MakeOrderForm;
-use GirafftShop\Commands\MakeOrderCommand;
+use GirafftShop\Orders\Order;
+use GirafftShop\Orders\Forms\MakeOrderForm;
+use GirafftShop\Orders\Commanding\MakeOrderCommand;
 
 class OrdersController extends \BaseController {
 

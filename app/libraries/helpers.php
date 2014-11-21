@@ -5,3 +5,7 @@ function filterEmpty($array) {
        return $value != '';
     });
 }
+
+function intToMoney($int) {
+    return number_format( ( $int / 100 ), 2 );
+}

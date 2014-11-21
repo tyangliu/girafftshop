@@ -17,8 +17,12 @@
         </div>
         <div class="toolbar">
             <div class="icon-set">
-            <a href="" class="toolbar-icon">{{ HTML::image('images/icon_cart.svg', 'Shopping Cart') }}</a>
-            <p class="inline cart-label">1 Item</p>
+            <a href="/cart" class="toolbar-icon">{{ HTML::image('images/icon_cart.svg', 'Shopping Cart') }}</a>
+            <span class="inline cart-label">
+                {{ count(Session::get('cart')) }}
+                {{ (count(Session::get('cart')) == 1) ? 'Item' : 'Items' }}
+                {{-- json_encode(Session::get('cart')) --}}
+            </span>
             <a href="" class="toolbar-icon">{{ HTML::image('images/icon_cog.svg', 'Options') }}</a>
             </div>
             <a href="{{ action('SessionsController@destroy') }}">{{ Form::button('Logout',['class'=>'logout-button']) }}</a>

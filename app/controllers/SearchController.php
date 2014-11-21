@@ -1,7 +1,7 @@
 <?php
 
-use GirafftShop\Commands\SearchItemCommand;
-use GirafftShop\Forms\SearchItemForm;
+use GirafftShop\Items\Commanding\SearchItemCommand;
+use GirafftShop\Items\Forms\SearchItemForm;
 
 class SearchController extends \BaseController {
 

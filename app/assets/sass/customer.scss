@@ -107,3 +107,152 @@ input[type=text] {
 .logout-button:focus {
   outline: none;
 }
+
+.item-widget {
+  width: 75%;
+  margin: 40px auto;
+  border: 1px solid $border-color;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.item-widget h2 {
+  margin: 0;
+  padding: 15px 0;
+  width: 100%;
+  border-bottom: 1px solid $border-color;
+}
+
+.item-widget-attributes {
+  padding: 20px 0;
+  border-bottom: 1px solid $border-color;
+}
+
+.item-widget-attributes li {
+  display: inline;
+  margin: 0 5%;
+}
+
+.attribute-label {
+  font-weight: bold;
+}
+
+.item-widget .button {
+  margin: 20px 0;
+}
+
+.buy-widget, .info-widget {
+  width: 75%;
+  margin: 40px auto;
+  border: 1px solid $border-color;
+  border-radius: 7px;
+}
+
+.info-widget {
+  margin-top: 60px;
+}
+
+.info-widget-songs {
+  text-align: center;
+
+  h2 {
+    border-bottom: 1px solid $border-color;
+    margin: 0 20px;
+    padding: 10px 0 20px;
+  }
+
+  ul {
+    padding: 20px 0 10px;
+  }
+}
+
+.item-title {
+  margin-bottom: 0;
+}
+
+.singer-name {
+  font-family: $primary-font;
+  font-weight: $primary-weight;
+  margin: 0;
+  text-align: center;
+}
+
+.buy-widget-attributes {
+  float: left;
+  padding: 20px 30px 12px;
+}
+
+.buy-widget h2 {
+  text-align: left;
+  font-family: $heading-font;
+  font-weight: $bold-weight;
+  font-size: 3.5em;
+  margin: 0 20px 0 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.buy-widget-stock {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.buy-widget form {
+  width: 303px;
+  float: right;
+  padding: 20px 30px;
+  border-left: 1px solid $border-color;
+  text-align: center;
+}
+
+.buy-widget dl {
+  display: inline;
+  margin: 0;
+}
+
+input[type=number].buy-quantity {
+  width: 70px;
+  margin-right: 20px;
+}
+
+.buy-widget input[type=submit] {
+  padding: 18px 24px;
+}
+
+.stock-label {
+  display: block;
+}
+
+.shopping-cart {
+  width: 90%;
+  margin: 60px auto 40px;
+}
+
+.cart-form {
+  text-align: center;
+}
+
+.cart-item {
+  width: 50%;
+}
+
+.cart-quantity {
+
+}
+
+.cart-quantity-input {
+  width: 40px;
+}
+
+.cart-subtotal {
+
+}
+
+.cart-delete {
+  text-align: center;
+}
+
+input[type=submit].checkout-button {
+  background-color: #86b521;
+  margin-left: 20px;
+}
