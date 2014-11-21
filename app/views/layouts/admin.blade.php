@@ -13,8 +13,8 @@
 <body>
     <header class="header">
         <div class="title-wrap">
-            <div class="logo">{{ HTML::image('images/logo_white.svg', 'GirafftShop') }}</div>
-            <div class="header-title">Control Panel</div>
+            <a href=""><div class="logo">{{ HTML::image('images/logo_white.svg', 'GirafftShop') }}</div>
+            <div class="header-title">Control Panel</div></a>
         </div>
         <div class="toolbar">
             <div class="icon-set">

@@ -1,22 +1,7 @@
-<?php
+<?php namespace GirafftShop\Entities;
 
 class ReturnItem extends \Eloquent {
 	protected $fillable = [];
-
-    public function getReturnReturnId()
-    {
-        return $this->return_returnId;
-    }
-
-    public function getItemUpc()
-    {
-        return $this->item_upc;
-    }
-
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
 
     public function orderReturn()
     {

@@ -85,6 +85,9 @@ input[type=text], input[type=password], select {
   background-color: #F6F6F6;
   margin: 10px 0; }
 
+input[type=text].has-error, input[type=password].has-error {
+    border-color: #ff0000; }
+
 input[type=text]:focus, input[type=password]:focus, select:focus {
   outline: 0;
   border: 1px solid #EF941B;

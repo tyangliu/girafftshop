@@ -1,6 +1,17 @@
 <?php
 
+use GirafftShop\Orders\Order;
+use GirafftShop\Orders\Forms\MakeOrderForm;
+use GirafftShop\Orders\Commanding\MakeOrderCommand;
+
 class OrdersController extends \BaseController {
+
+	private $makeOrderForm;
+
+	function __construct(MakeOrderForm $makeOrderForm)
+    {
+        $this->makeOrderForm = $makeOrderForm;
+    }
 
 	/**
 	 * Display a listing of the resource.
@@ -21,7 +32,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('orders.create');
 	}
 
 	/**
@@ -32,7 +43,19 @@ class OrdersController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::all();
+
+		$this->makeOrderForm->validate($input);
+
+		$input['date'] = strtotime($input['date']);
+		$input['expiryDate'] = strtotime($input['expiryDate']);
+		$input['expectedDate'] = strtotime($input['expectedDate']);
+		$input['deliveredDate'] = strtotime($input['deliveredDate']);
+
+		$this->execute(MakeOrderCommand::class);
+
+		return Redirect::route('newOrder_path');
+
 	}
 
 	/**

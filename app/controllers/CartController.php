@@ -1,86 +1,88 @@
 <?php
 
+use GirafftShop\Items\Commanding\AddToCartCommand;
+use GirafftShop\Items\Commanding\EditCartItemCommand;
+use GirafftShop\Items\Forms\AddToCartForm;
+use GirafftShop\Items\Forms\EditCartItemForm;
+use GirafftShop\Repos\ItemRepository;
+use Illuminate\Session\Store;
+
 class CartController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /cart
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    protected $session;
+    protected $addToCartForm;
+    protected $editCartItemForm;
+    protected $repository;
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /cart/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    function __construct(Store $session, AddToCartForm $addToCartForm, EditCartItemForm $editCartItemForm, ItemRepository $repository)
+    {
+        $this->session = $session;
+        $this->repository = $repository;
+        $this->addToCartForm = $addToCartForm;
+        $this->editCartItemForm = $editCartItemForm;
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /cart
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    public function store()
+    {
 
-	/**
-	 * Display the specified resource.
-	 * GET /cart/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+        $this->addToCartForm->validate(Input::all());
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /cart/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+        extract(Input::all());
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /cart/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+        if ($quantity <= $this->repository->getByField('upc',$item_upc)->first()->stock)
+        {
+            $this->execute(AddToCartCommand::class);
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /cart/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+            return Redirect::back();
+        }
+        else
+        {
+            return Redirect::back()->withInput();
+        }
 
+
+    }
+
+    public function index()
+    {
+        $cart = $this->session->get('cart');
+
+        $items = [];
+
+        foreach ($cart as $upc => $quantity ) {
+            $items = array_add(
+                $items,
+                $upc,
+                ['quantity' => $quantity, 'entity' => $this->repository->getByField('upc', $upc)->first()]
+            );
+        }
+
+        $data['items'] = $items;
+
+        return View::make('cart.index', $data);
+    }
+
+    public function update()
+    {
+        $input = Input::except('_token');
+        foreach ($input as $upc => $params ) {
+            $this->editCartItemForm->validate($params);
+            $delete = '0';
+            extract($params);
+
+            if (($quantity <= $this->repository->getByField('upc',$item_upc)->first()->stock) || ($delete == '1'))
+            {
+                $this->execute(EditCartItemCommand::class, [
+                    'item_upc' => $item_upc,
+                    'quantity' => $quantity,
+                    'delete'   => $delete
+                ]);
+            }
+            else
+            {
+                return Redirect::back();
+            }
+        }
+        return Redirect::back();
+    }
 }
