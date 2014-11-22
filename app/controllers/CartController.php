@@ -49,13 +49,16 @@ class CartController extends \BaseController {
 
         $items = [];
 
-        foreach ($cart as $upc => $quantity ) {
-            $items = array_add(
-                $items,
-                $upc,
-                ['quantity' => $quantity, 'entity' => $this->repository->getByField('upc', $upc)->first()]
-            );
-        }
+        if (is_null($cart) == FALSE) {
+
+            foreach ($cart as $upc => $quantity ) {
+                $items = array_add(
+                    $items,
+                    $upc,
+                    ['quantity' => $quantity, 'entity' => $this->repository->getByField('upc', $upc)->first()]
+                );
+            }
+        }     
 
         $data['items'] = $items;
 
