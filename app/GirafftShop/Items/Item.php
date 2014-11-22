@@ -30,6 +30,11 @@ class Item extends \Eloquent {
         return $this->belongsToMany('GirafftShop\Returns\ReturnItem', 'upc', 'item_upc');
     }
 
+    public function setPriceAttribute($price)
+    {
+        $this->attributes['price'] = (int) ($price * 100);
+    }
+
     public static function add($input)
     {
         $item = new static($input);

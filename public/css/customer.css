@@ -160,7 +160,7 @@ button, input[type=submit] {
 
 .outer-container {
   background: #fff;
-  padding: 40px;
+  padding: 40px 40px 80px;
   border-top: 1px solid #E5E5E5;
   border-bottom: 1px solid #E5E5E5; }
 
