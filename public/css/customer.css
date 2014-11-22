@@ -356,3 +356,10 @@ input[type=number].buy-quantity {
 button.checkout-button {
   background-color: #86b521;
   margin-left: 20px; }
+
+.summary-widget {
+  width: 75%;
+  margin: 40px auto;
+  border: 1px solid #E5E5E5;
+  border-radius: 7px;
+  text-align: center; }

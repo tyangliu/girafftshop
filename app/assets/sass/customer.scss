@@ -255,3 +255,13 @@ button.checkout-button {
   background-color: #86b521;
   margin-left: 20px;
 }
+
+.order-form {}
+
+.summary-widget {
+  width: 75%;
+  margin: 40px auto;
+  border: 1px solid $border-color;
+  border-radius: 7px;
+  text-align: center;
+}

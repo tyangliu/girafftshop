@@ -49,4 +49,5 @@ class Order extends \Eloquent {
 
         return $order;
     }
+
 }
