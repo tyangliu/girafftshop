@@ -2,6 +2,7 @@
 
 @section('content')
     <h1>Shopping Cart</h1>
+@if(!empty($items))
 
     {{ Form::open(['route'=>'updateCart_path', 'class'=>'cart-form']) }}
     <table class="shopping-cart">
@@ -36,4 +37,7 @@
         {{ Form::submit('Update Cart') }}
         {{ Form::button('Checkout', ['class' => 'checkout-button']) }}
     {{ Form::close() }}
+@else
+    <p class="center">Your cart is empty!</p>
+@endif
 @stop
