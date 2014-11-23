@@ -12,8 +12,14 @@
     </ul>
 @endif
 
+<<<<<<< HEAD
 {{ Form::open(array('route' => 'newOrder_path', 'class' => 'order-form')) }}
     @include('orders.partials.summary_widget')
+=======
+@include('orders.partials.summary_widget')
+
+{{ Form::open(array('route' => 'newOrder_path', 'class' => 'order-form')) }}
+>>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
     <dl>
     {{-- Card # Input --}}
         <dt class="form-label">{{ Form::label('card', 'Card Number') }}</dt>

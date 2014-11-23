@@ -13,9 +13,13 @@
             <th>Subtotal</th>
             <th>Delete</th>
         </tr>
+<<<<<<< HEAD
     <?php $total = 0 ?>
     @foreach( $items as $upc => $item )
         <?php $total += $item['entity']->price * $item['quantity'] ?>
+=======
+    @foreach( $items as $upc => $item )
+>>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
         {{ Form::hidden($upc . '[item_upc]', $upc) }}
         <tr>
             <td class="cart-item">
@@ -35,6 +39,7 @@
             </td>
         </tr>
     @endforeach
+<<<<<<< HEAD
         <tr>
             <td class="cart-total-price" colspan="100">
                 <h2>Total Price: ${{ intToMoney($total) }}</h2>
@@ -46,6 +51,11 @@
             {{ Form::button('Checkout', ['class' => 'checkout-button']) }}
         </a>
 
+=======
+    </table>
+        {{ Form::submit('Update Cart') }}
+        {{ Form::button('Checkout', ['class' => 'checkout-button']) }}
+>>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
     {{ Form::close() }}
 @else
     <p class="center">Your cart is empty!</p>

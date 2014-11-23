@@ -35,4 +35,19 @@ class Order extends \Eloquent {
         $this->attributes['deliveryDate'] = date("Y-m-d", strtotime($deliveryDate));
     }
 
+<<<<<<< HEAD
+=======
+    public function customer()
+    {
+        return $this->belongsTo('Customer', 'cUsername', 'username');
+    }
+
+    public static function make($input) 
+    {
+        $order = new static($input);
+
+        return $order;
+    }
+
+>>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
 }

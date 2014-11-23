@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 use Illuminate\Session\Store;
 use GirafftShop\Repos\ItemRepository;
 use GirafftShop\Orders\Forms\MakeOrderForm;
@@ -19,6 +20,19 @@ class OrdersController extends \BaseController {
         $this->session = $session;
         $this->makeOrderForm = $makeOrderForm;
         $this->repository = $repository;
+=======
+use GirafftShop\Orders\Order;
+use GirafftShop\Orders\Forms\MakeOrderForm;
+use GirafftShop\Orders\Commanding\MakeOrderCommand;
+
+class OrdersController extends \BaseController {
+
+	private $makeOrderForm;
+
+	function __construct(MakeOrderForm $makeOrderForm)
+    {
+        $this->makeOrderForm = $makeOrderForm;
+>>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
     }
 
 	/**
@@ -40,10 +54,14 @@ class OrdersController extends \BaseController {
 	 */
 	public function create()
 	{
+<<<<<<< HEAD
 
         $data['items'] = $this->getCartItems();
 
         return View::make('orders.create', $data);
+=======
+		return View::make('orders.create');
+>>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
 	}
 
 	/**
@@ -54,6 +72,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function store()
 	{
+<<<<<<< HEAD
         $items = $this->getCartItems();
 
 
@@ -92,6 +111,18 @@ class OrdersController extends \BaseController {
         // clear the cart
 
         $this->session->set('cart', []);
+=======
+		$input = Input::all();
+
+		$this->makeOrderForm->validate($input);
+
+		$input['date'] = strtotime($input['date']);
+		$input['expiryDate'] = strtotime($input['expiryDate']);
+		$input['expectedDate'] = strtotime($input['expectedDate']);
+		$input['deliveredDate'] = strtotime($input['deliveredDate']);
+
+		$this->execute(MakeOrderCommand::class);
+>>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
 
 		return Redirect::route('newOrder_path');
 
