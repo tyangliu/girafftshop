@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>{{ $item->title }}</h1>
-        <table class="inventory">
+        <table class="cp-table">
             <tr>
                 <th>UPC</th>
                 <td>{{ $item->upc }}</td>

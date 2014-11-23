@@ -6,7 +6,7 @@ Inventory
 
 @section('content')
 <h1>Inventory</h1>
-    <table class="inventory">
+    <table class="cp-table">
         <tr>
             <th>Title</th>
             <th>UPC</th>
@@ -16,7 +16,7 @@ Inventory
     @foreach($items as $item)
         <tr>
 
-            <td><a href="/inventory/{{ $item->upc }}">{{ $item->title }}</a></td>
+            <td><a href="{{ URL::route('editItem_path', [$item->upc]) }}">{{ $item->title }}</a></td>
             <td>{{ $item->upc }}</td>
             <td>{{ $item->stock }}</td>
             <td>${{ intToMoney($item->price) }}</td>

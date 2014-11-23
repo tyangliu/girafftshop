@@ -66,7 +66,7 @@ Route::group(['before' => 'auth'], function()
     /**
      * Dashboard
      */
-    Route::get('dashboard', [
+    Route::get('cp', [
         'as' => 'dashboard_path',
         'uses' => 'PanelController@showDashboard'
     ]);
@@ -74,24 +74,24 @@ Route::group(['before' => 'auth'], function()
      * Item Management
      */
 
-    Route::get('inventory', [
+    Route::get('cp/inventory', [
         'as' => 'inventory_path',
         'uses' => 'ItemsController@index'
     ]);
 
-    Route::get('inventory/new', [
+    Route::get('cp/inventory/new', [
         'as' => 'newItem_path',
         'uses' => 'ItemsController@create'
     ]);
-    Route::post('inventory/new', [
+    Route::post('cp/inventory/new', [
         'as' => 'newItem_path',
         'uses' => 'ItemsController@store'
     ]);
-    Route::get('inventory/{upc}', [
+    Route::get('cp/inventory/{upc}', [
         'as' => 'editItem_path',
         'uses' => 'ItemsController@edit'
     ]);
-    Route::post('inventory/{upc}', [
+    Route::post('cp/inventory/{upc}', [
         'as' => 'editItem__path',
         'uses' => 'ItemsController@update'
     ]);

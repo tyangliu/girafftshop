@@ -351,7 +351,7 @@ input[type=text] {
 .current a {
   color: #f1a84b; }
 
-.inventory {
+.cp-table {
   width: 90%;
   margin: 40px auto;
   border: 1px solid #E5E5E5;
