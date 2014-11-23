@@ -11,13 +11,13 @@ class ItemsController extends BaseController {
 
     private $addItemForm;
     private $editItemForm;
-    private $repository;
+    private $itemRepository;
 
-    function __construct(AddItemForm $addItemForm, EditItemForm $editItemForm, ItemRepository $repository)
+    function __construct(AddItemForm $addItemForm, EditItemForm $editItemForm, ItemRepository $itemRepository)
     {
         $this->addItemForm = $addItemForm;
         $this->editItemForm = $editItemForm;
-        $this->repository = $repository;
+        $this->itemRepository = $itemRepository;
     }
 
     public function create()
@@ -61,7 +61,7 @@ class ItemsController extends BaseController {
 
     public function show( $upc )
     {
-        $data = ['item' => $this->repository->getByField('upc', $upc)->first() ];
+        $data = ['item' => $this->itemRepository->getByField('upc', $upc)->first() ];
         return View::make('items.show', $data);
     }
 

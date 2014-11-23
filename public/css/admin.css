@@ -80,10 +80,16 @@ h2 {
   color: #68625E;
   margin: 20px 0; }
 
-a {
+a, a h2 {
   font-weight: 700;
+  text-decoration: none;
+  -webkit-transition: color 0.15s ease-out;
+          transition: color 0.15s ease-out; }
+
+a:hover, a:hover h2 {
   color: #EF941B;
-  text-decoration: none; }
+  -webkit-transition: color 0.15s ease-in;
+          transition: color 0.15s ease-in; }
 
 table {
   border-collapse: separate;

@@ -5,7 +5,12 @@ class Order extends \Eloquent {
 
     public function customer()
     {
-        return $this->belongsTo('Customer', 'cUsername', 'username');
+        return $this->belongsTo('GirafftShop\Customers\Customer', 'cUsername', 'username');
+    }
+
+    public function purchaseItems()
+    {
+        return $this->hasMany('GirafftShop\Orders\PurchaseItem', 'order_receiptId', 'receiptId');
     }
 
     public static function make($input) 

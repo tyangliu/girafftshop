@@ -14,12 +14,15 @@ class CartController extends \BaseController {
     protected $session;
     protected $addToCartForm;
     protected $editCartItemForm;
-    protected $repository;
+    protected $itemRepository;
 
-    function __construct(Store $session, AddToCartForm $addToCartForm, EditCartItemForm $editCartItemForm, ItemRepository $repository)
+    function __construct(Store $session,
+                         AddToCartForm $addToCartForm,
+                         EditCartItemForm $editCartItemForm,
+                         ItemRepository $itemRepository)
     {
         $this->session = $session;
-        $this->repository = $repository;
+        $this->itemRepository = $itemRepository;
         $this->addToCartForm = $addToCartForm;
         $this->editCartItemForm = $editCartItemForm;
     }
@@ -31,7 +34,7 @@ class CartController extends \BaseController {
 
         extract(Input::all());
 
-        if ($quantity <= $this->repository->getByField('upc',$item_upc)->first()->stock)
+        if ($quantity <= $this->itemRepository->getByField('upc',$item_upc)->first()->stock)
         {
             $this->execute(AddToCartCommand::class);
 
@@ -61,7 +64,7 @@ class CartController extends \BaseController {
             $delete = '0';
             extract($params);
 
-            if (($quantity <= $this->repository->getByField('upc',$item_upc)->first()->stock) || ($delete == '1'))
+            if (($quantity <= $this->itemRepository->getByField('upc',$item_upc)->first()->stock) || ($delete == '1'))
             {
                 $this->execute(EditCartItemCommand::class, [
                     'item_upc' => $item_upc,

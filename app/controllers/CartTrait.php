@@ -14,7 +14,7 @@ trait CartTrait {
                 $items = array_add(
                     $items,
                     $upc,
-                    ['quantity' => $quantity, 'entity' => $this->repository->getByField('upc', $upc)->first()]
+                    ['quantity' => $quantity, 'entity' => $this->itemRepository->getByField('upc', $upc)->first()]
                 );
             }
         }
@@ -27,7 +27,7 @@ trait CartTrait {
         $cart = $this->session->get('cart');
 
         foreach($cart as $upc => $quantity ) {
-            $item = $this->repository->getByField('upc', $upc)->first();
+            $item = $this->itemRepository->getByField('upc', $upc)->first();
             if ( $item == null ) return false;
 
             $stock = $item->stock;

@@ -1,6 +1,7 @@
 <?php namespace GirafftShop\Repos;
 
 use GirafftShop\Orders\Order;
+use \DB;
 
 class OrderRepository extends Repository {
 
@@ -20,5 +21,10 @@ class OrderRepository extends Repository {
     public function save(Order $order)
     {
         return $order->save();
+    }
+
+    public function getPending()
+    {
+        return $this->model->where('deliveredDate', null)->get();
     }
 } 

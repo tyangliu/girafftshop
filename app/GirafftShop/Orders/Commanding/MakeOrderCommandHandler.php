@@ -28,7 +28,8 @@ class MakeOrderCommandHandler implements CommandHandler {
             'date'          => $command->date,
             'cUsername'     => $command->cUsername,
             'card'          => $command->card,
-            'expiryDate'    => $command->expiryDate
+            'expiryDate'    => $command->expiryDate,
+            'expectedDate'  => $command->expectedDate
         ]);
 
         $this->repository->save($order);

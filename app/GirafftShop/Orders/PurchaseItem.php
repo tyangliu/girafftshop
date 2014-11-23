@@ -5,12 +5,12 @@ class PurchaseItem extends \Eloquent {
 
     public function order()
     {
-        return $this->belongsTo('Order', 'order_receiptId', 'receiptId');
+        return $this->belongsTo('GirafftShop\Orders\Order', 'order_receiptId', 'receiptId');
     }
 
     public function item()
     {
-        return $this->hasOne('Item', 'item_upc', 'upc');
+        return $this->hasOne('GirafftShop\Items\Item', 'upc', 'item_upc');
     }
 
     public static function add($input)

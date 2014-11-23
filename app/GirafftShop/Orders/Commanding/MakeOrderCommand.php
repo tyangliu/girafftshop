@@ -13,7 +13,9 @@ class MakeOrderCommand {
 
     public $expiryDate;
 
-    function __construct($receiptId, $date, $cUsername, $card, $expiryDate)
+    public $expectedDate;
+
+    function __construct($receiptId, $date, $cUsername, $card, $expiryDate, $expectedDate)
 
     {
         $this->receiptId = $receiptId;
@@ -21,5 +23,6 @@ class MakeOrderCommand {
         $this->cUsername = $cUsername;
         $this->card = $card;
         $this->expiryDate = $expiryDate;
+        $this->expectedDate = $expectedDate;
     }
 } 

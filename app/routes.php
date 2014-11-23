@@ -105,7 +105,11 @@ Route::post('cart/update', [
 
 /**
  * Orders 
- */ 
+ */
+Route::get('orders/', [
+    'as' => 'orders_path',
+    'uses' => 'OrdersController@index'
+]);
 Route::get('orders/new', [
     'as' => 'newOrder_path',
     'uses' => 'OrdersController@create'
@@ -113,6 +117,10 @@ Route::get('orders/new', [
 Route::post('orders/new', [
     'as' => 'newOrder_path',
     'uses' => 'OrdersController@store'
+]);
+Route::get('orders/{receiptId}', [
+    'as' => 'showOrder_path',
+    'uses' => 'OrdersController@show'
 ]);
 
 

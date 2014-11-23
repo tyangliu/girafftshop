@@ -12,11 +12,11 @@ class AddItemForm extends FormValidator {
         'upc' => 'required|integer',
         'title' => 'required',
         'type' => 'required|alpha|between:2,3',
-        'category' => 'required|alpha_num',
-        'company' => 'required|alpha_num',
+        'category' => 'required',
+        'company' => 'required',
         'year' => 'required|integer|digits:4',
         'price' => ['required', 'regex:/[0-9]*(\.[0-9][0-9])?/'],
         'stock' => 'required|integer',
-        'leadSingerName' => 'alpha'
+        'leadSingerName' => ''
     ];
 } 

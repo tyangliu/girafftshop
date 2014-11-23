@@ -108,7 +108,7 @@ input[type=text] {
   outline: none;
 }
 
-.item-widget {
+.item-widget, .order-widget {
   width: 75%;
   margin: 40px auto;
   border: 1px solid $border-color;
@@ -125,7 +125,6 @@ input[type=text] {
 
 .item-widget-attributes {
   padding: 20px 0;
-  border-bottom: 1px solid $border-color;
 }
 
 .item-widget-attributes li {
@@ -257,8 +256,6 @@ button.checkout-button {
   margin-left: 20px;
 }
 
-.order-form {}
-
 .summary-widget {
   width: 75%;
   margin: 40px auto;
@@ -266,3 +263,22 @@ button.checkout-button {
   border-radius: 7px;
   text-align: center;
 }
+
+.order-widget h2 {
+  margin: 0;
+  padding: 15px 0 0;
+  width: 100%;
+}
+
+.order-widget p {
+  margin-bottom: 18px;
+}
+
+.order-return {
+  text-align: center;
+}
+
+.return-quantity-input {
+  width: 60px;
+}
+

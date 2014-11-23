@@ -2,7 +2,7 @@
     <tr>
         <th>Item</th>
         <th>Price</th>
-        <th>Quantity</th>
+        <th>Qty.</th>
         <th>Subtotal</th>
     </tr>
 <?php $total = 0 ?>

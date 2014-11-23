@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Session\Store;
+use GirafftShop\Repos\OrderRepository;
 use GirafftShop\Repos\ItemRepository;
 use GirafftShop\Orders\Forms\MakeOrderForm;
 use GirafftShop\Orders\Commanding\MakeOrderCommand;
@@ -12,13 +13,20 @@ class OrdersController extends \BaseController {
 
     private $session;
 	private $makeOrderForm;
-    private $repository;
+    private $orderRepository;
+    private $itemRepository;
+    // set number of deliverable orders per day
+    private $deliverablePerDay = 1;
 
-	function __construct(Store $session, MakeOrderForm $makeOrderForm, ItemRepository $repository)
+	function __construct(Store $session,
+                         MakeOrderForm $makeOrderForm,
+                         OrderRepository $orderRepository,
+                         ItemRepository $itemRepository)
     {
         $this->session = $session;
         $this->makeOrderForm = $makeOrderForm;
-        $this->repository = $repository;
+        $this->orderRepository = $orderRepository;
+        $this->itemRepository = $itemRepository;
     }
 
 	/**
@@ -29,7 +37,8 @@ class OrdersController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+        $data['orders'] = $this->orderRepository->getByField('cUsername', Auth::user()->username);
+        return View::make('orders.index', $data);
 	}
 
 	/**
@@ -64,10 +73,14 @@ class OrdersController extends \BaseController {
         }
 
         // Create new order
+
+        $today = date('Y-m-d');
+
 		$input = array_merge(Input::only(['card', 'expiryDate']), [
             'receiptId' => generateReceiptId(),
-            'date' => date('Y-m-d'),
-            'cUsername' => Auth::user()->username
+            'date' => $today,
+            'cUsername' => Auth::user()->username,
+            'expectedDate' => $this->calcExpectedDate($today)
         ]);
 
 		$this->makeOrderForm->validate($input);
@@ -104,45 +117,29 @@ class OrdersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($receiptId)
 	{
-		//
+        $order = $this->orderRepository->getByField('receiptId', $receiptId)->first();
+        $purchaseItems = $order->purchaseItems;
+
+        $data['order'] = $order;
+        $data['purchaseItems'] = $purchaseItems;
+
+        return View::make('orders.show', $data);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /orders/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    public function setDeliverablePerDay($numOrders)
+    {
+        $this->deliverablePerDay = $numOrders;
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /orders/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+    private function calcExpectedDate($orderDate)
+    {
+        $totalPending = count($this->orderRepository->getPending());
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /orders/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+        $days = ceil($totalPending/$this->deliverablePerDay);
+
+        return date('Y-m-d', strtotime($orderDate . ' + ' . $days . ' days'));
+    }
 
 }
