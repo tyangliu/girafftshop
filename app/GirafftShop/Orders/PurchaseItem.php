@@ -1,22 +1,7 @@
-<?php
+<?php namespace GirafftShop\Orders;
 
 class PurchaseItem extends \Eloquent {
 	protected $guarded = [];
-
-    public function getOrderReceiptId()
-    {
-        return $this->order_receiptId;
-    }
-
-    public function getItemUpc()
-    {
-        return $this->item_upc;
-    }
-
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
 
     public function order()
     {
@@ -26,5 +11,12 @@ class PurchaseItem extends \Eloquent {
     public function item()
     {
         return $this->hasOne('Item', 'item_upc', 'upc');
+    }
+
+    public static function add($input)
+    {
+        $purchaseItem = new static($input);
+
+        return $purchaseItem;
     }
 }

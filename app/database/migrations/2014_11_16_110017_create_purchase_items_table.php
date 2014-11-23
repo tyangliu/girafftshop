@@ -15,7 +15,7 @@ class CreatePurchaseItemsTable extends Migration {
 		Schema::create('purchase_items', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('order_receiptId')->unsigned();
+			$table->string('order_receiptId', 64);
             $table->foreign('order_receiptId')
                 ->references('receiptId')->on('orders')
                 ->onDelete('cascade');

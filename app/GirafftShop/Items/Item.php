@@ -1,6 +1,13 @@
 <?php namespace GirafftShop\Items;
 
+use PresentableTrait;
+
 class Item extends \Eloquent {
+
+    use PresentableTrait;
+
+    protected $presenter = 'GirafftShop\Presenters\ItemPresenter';
+
     protected $guarded = [];
 
     public function leadSinger()
@@ -21,6 +28,11 @@ class Item extends \Eloquent {
     public function returnItem()
     {
         return $this->belongsToMany('GirafftShop\Returns\ReturnItem', 'upc', 'item_upc');
+    }
+
+    public function setPriceAttribute($price)
+    {
+        $this->attributes['price'] = (int) ($price * 100);
     }
 
     public static function add($input)

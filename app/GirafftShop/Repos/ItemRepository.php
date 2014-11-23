@@ -16,7 +16,7 @@ class ItemRepository extends Repository {
         return $item->save();
     }
 
-    public function update($upc, $stock, $price)
+    public function update($upc, $stock, $price='')
     {
         $item = $this->getByField('upc', $upc)->first();
 
@@ -35,12 +35,13 @@ class ItemRepository extends Repository {
 
         foreach ($fields as $fieldName => $fieldValue)
         {
-            if ($fieldName = 'leadSingerName')
+            if ($fieldName == 'leadSingerName')
             {
                 $query =
                     $query->whereHas('leadSinger', function ($q) use ($fieldValue) {
                         $q->where('name', '=', $fieldValue);
                     });
+
             }
             else
             {

@@ -1,6 +1,6 @@
 <?php namespace GirafftShop\Items\Forms;
 
-use Laracasts\Validation\FormValidator;
+use FormValidator;
 
 class EditItemForm extends FormValidator {
     /**
@@ -10,7 +10,7 @@ class EditItemForm extends FormValidator {
      */
     protected $rules = [
         'upc'   => 'required|integer',
-        'price' => 'required|integer',
+        'price' => 'regex:/[0-9]*(\.[0-9][0-9])?/',
         'stock' => 'required|integer'
     ];
 } 

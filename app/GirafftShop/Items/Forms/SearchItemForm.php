@@ -1,6 +1,6 @@
 <?php namespace GirafftShop\Items\Forms;
 
-use Laracasts\Validation\FormValidator;
+use FormValidator;
 
 class SearchItemForm extends FormValidator {
     /**
@@ -10,7 +10,7 @@ class SearchItemForm extends FormValidator {
      */
     protected $rules = [
         'category' => 'alpha_num',
-        'type' => 'alpha|between:2,3',
+        'title' => '',
         'leadSingerName' => 'alpha'
     ];
 } 

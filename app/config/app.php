@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'America/Los_Angeles',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -194,6 +194,8 @@ return array(
         'CommandHandler'    => 'Laracasts\Commander\CommandHandler',
         'CommandBus'        => 'Laracasts\Commander\CommandBus',
         'FormValidator'     => 'Laracasts\Validation\FormValidator',
+        'Presenter'         => 'Laracasts\Presenter\Presenter',
+        'PresentableTrait'  => 'Laracasts\Presenter\PresentableTrait'
 	),
 
 );

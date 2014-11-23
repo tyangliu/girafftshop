@@ -5,3 +5,13 @@ function filterEmpty($array) {
        return $value != '';
     });
 }
+
+function intToMoney($int) {
+    return number_format( ( $int / 100 ), 2 );
+}
+
+function generateReceiptId() {
+    $customerId = Auth::id();
+    $date = new DateTime();
+    return $customerId . $date->getTimestamp();
+}

@@ -2,6 +2,8 @@
 
 use GirafftShop\Customers\Customer;
 use GirafftShop\Items\Item;
+use GirafftShop\Orders\Order;
+use GirafftShop\Orders\PurchaseItem;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +60,7 @@ Route::get('logout', [
 /**
  * Item Search
  */
-Route::post('search', [
+Route::get('search', [
     'as' => 'search_path',
     'uses' => 'SearchController@show'
 ]);
@@ -81,19 +83,45 @@ Route::post('items/edit', [
     'uses' => 'ItemsController@update'
 ]);
 
+Route::get('items/{upc}', [
+    'as' => 'showItem_path',
+    'uses' => 'ItemsController@show'
+]);
+
+Route::get('cart', [
+    'as' => 'cart_path',
+    'uses' => 'CartController@index'
+]);
+
+Route::post('cart/add', [
+    'as' => 'addToCart_path',
+    'uses' => 'CartController@store'
+]);
+
+Route::post('cart/update', [
+    'as' => 'updateCart_path',
+    'uses' => 'CartController@update'
+]);
+
+/**
+ * Orders 
+ */ 
+Route::get('orders/new', [
+    'as' => 'newOrder_path',
+    'uses' => 'OrdersController@create'
+]);
+Route::post('orders/new', [
+    'as' => 'newOrder_path',
+    'uses' => 'OrdersController@store'
+]);
+
+
 /* -------- test functions -------- */
 Route::get('test', function() {
 
     $data['customers'] = Customer::all();
     $data['items'] = Item::all();
+    $data['orders'] = Order::all();
+    $data['purchaseItems'] = PurchaseItem::all();
     return View::make('test', $data);
-});
-
-Route::get('getEnv', function() {
-    if (App::environment('local')) {
-        return 'local';
-    }
-    if (App::environment('production')) {
-        return 'production';
-    }
 });

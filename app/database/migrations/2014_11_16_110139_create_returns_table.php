@@ -15,9 +15,9 @@ class CreateReturnsTable extends Migration {
 		Schema::create('returns', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('returnId')->unsigned()->unique();
+			$table->string('returnId', 64)->unique();
 			$table->date('date');
-			$table->integer('order_receiptId')->unsigned();
+			$table->string('order_receiptId', 64);
             $table->foreign('order_receiptId')
                 ->references('receiptId')
                 ->on('orders');

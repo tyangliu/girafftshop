@@ -1,86 +1,79 @@
 <?php
 
+use GirafftShop\Items\Commanding\AddToCartCommand;
+use GirafftShop\Items\Commanding\EditCartItemCommand;
+use GirafftShop\Items\Forms\AddToCartForm;
+use GirafftShop\Items\Forms\EditCartItemForm;
+use GirafftShop\Repos\ItemRepository;
+use Illuminate\Session\Store;
+
 class CartController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /cart
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    use CartTrait;
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /cart/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    protected $session;
+    protected $addToCartForm;
+    protected $editCartItemForm;
+    protected $repository;
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /cart
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    function __construct(Store $session, AddToCartForm $addToCartForm, EditCartItemForm $editCartItemForm, ItemRepository $repository)
+    {
+        $this->session = $session;
+        $this->repository = $repository;
+        $this->addToCartForm = $addToCartForm;
+        $this->editCartItemForm = $editCartItemForm;
+    }
 
-	/**
-	 * Display the specified resource.
-	 * GET /cart/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    public function store()
+    {
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /cart/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+        $this->addToCartForm->validate(Input::all());
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /cart/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+        extract(Input::all());
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /cart/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+        if ($quantity <= $this->repository->getByField('upc',$item_upc)->first()->stock)
+        {
+            $this->execute(AddToCartCommand::class);
 
+            return Redirect::back();
+        }
+        else
+        {
+            return Redirect::back()->withInput();
+        }
+
+
+    }
+
+    public function index()
+    {
+
+        $data['items'] = $this->getCartItems();
+
+        return View::make('cart.index', $data);
+    }
+
+    public function update()
+    {
+        $input = Input::except('_token');
+        foreach ($input as $upc => $params ) {
+            $this->editCartItemForm->validate($params);
+            $delete = '0';
+            extract($params);
+
+            if (($quantity <= $this->repository->getByField('upc',$item_upc)->first()->stock) || ($delete == '1'))
+            {
+                $this->execute(EditCartItemCommand::class, [
+                    'item_upc' => $item_upc,
+                    'quantity' => $quantity,
+                    'delete'   => $delete
+                ]);
+            }
+            else
+            {
+                return Redirect::back();
+            }
+        }
+        return Redirect::back();
+    }
 }

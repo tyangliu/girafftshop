@@ -3,7 +3,7 @@
 @section('content')
 <h1>What are you looking for today?</h1>
 
-{{ Form::open(array('route' => 'search_path')) }}
+{{ Form::open(array('route' => 'search_path', 'method' => 'get')) }}
     <dl>
     {{-- Category Input --}}
         <dt class="form-label">{{ Form::label('category', 'Category') }}</dt>

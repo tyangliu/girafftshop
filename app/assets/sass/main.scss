@@ -39,6 +39,10 @@ body {
   display: inline-block;
 }
 
+.clear {
+  clear: both;
+}
+
 p {
   margin: 10px 0;
 }
@@ -52,13 +56,52 @@ h1 {
   margin: 20px 0;
 }
 
+h2 {
+  font-family: $heading-font;
+  font-size: 1.7em;
+  font-weight: $bold-weight;
+  line-height: 1.5em;
+  color: $text-color;
+  margin: 20px 0;
+}
+
 a {
   font-weight: 700;
   color: $accent-color;
   text-decoration: none;
 }
 
-input[type=text], input[type=password], select {
+table {
+  border-collapse: separate;
+  border: 1px solid $border-color;
+  border-radius: 7px;
+}
+
+td, th {
+  border-left: 1px solid $border-color;
+  border-top: 1px solid $border-color;
+  padding: 20px 30px;
+  text-align: left;
+}
+
+th {
+  font-weight: $bold-weight;
+}
+
+tr:first-child {
+  td, th {
+    border-top: none;
+  }
+}
+
+td:first-child, th:first-child {
+  border-left: none;
+}
+
+input[type=text],
+input[type=password],
+input[type=number],
+select {
   font-family: $primary-font;
   font-weight: $primary-weight;
   font-size: 1em;
@@ -69,7 +112,17 @@ input[type=text], input[type=password], select {
   background-color: $bg-color;
   margin: 10px 0;
 }
-input[type=text]:focus,input[type=password]:focus, select:focus {
+
+input[type=text].has-error,
+input[type=password].has-error,
+input[type=number].has-error {
+  border-color: #ff0000;
+}
+
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=number]:focus,
+select:focus {
   outline: 0;
   border: 1px solid $accent-color;
   padding: 18px;
@@ -94,7 +147,7 @@ input[type="checkbox"]:checked + label span {
   background-size: 36px 18px;
 }
 
-input[type=submit] {
+button, input[type=submit] {
   padding: 18px 38px;
   background: $accent-color;
   border: 0 none;

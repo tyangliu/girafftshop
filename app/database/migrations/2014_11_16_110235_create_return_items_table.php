@@ -15,7 +15,7 @@ class CreateReturnItemsTable extends Migration {
 		Schema::create('return_items', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('return_returnId')->unsigned();
+			$table->string('return_returnId', 64);
             $table->foreign('return_returnId')
                 ->references('returnId')
                 ->on('returns');
