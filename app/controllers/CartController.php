@@ -9,11 +9,8 @@ use Illuminate\Session\Store;
 
 class CartController extends \BaseController {
 
-<<<<<<< HEAD
     use CartTrait;
 
-=======
->>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
     protected $session;
     protected $addToCartForm;
     protected $editCartItemForm;
@@ -50,27 +47,8 @@ class CartController extends \BaseController {
 
     public function index()
     {
-<<<<<<< HEAD
 
         $data['items'] = $this->getCartItems();
-=======
-        $cart = $this->session->get('cart');
-
-        $items = [];
-
-        if (is_null($cart) == FALSE) {
-
-            foreach ($cart as $upc => $quantity ) {
-                $items = array_add(
-                    $items,
-                    $upc,
-                    ['quantity' => $quantity, 'entity' => $this->repository->getByField('upc', $upc)->first()]
-                );
-            }
-        }     
-
-        $data['items'] = $items;
->>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
 
         return View::make('cart.index', $data);
     }

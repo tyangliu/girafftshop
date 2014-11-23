@@ -3,10 +3,7 @@
 use GirafftShop\Customers\Customer;
 use GirafftShop\Items\Item;
 use GirafftShop\Orders\Order;
-<<<<<<< HEAD
 use GirafftShop\Orders\PurchaseItem;
-=======
->>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
 
 /*
 |--------------------------------------------------------------------------
@@ -125,9 +122,8 @@ Route::get('test', function() {
     $data['customers'] = Customer::all();
     $data['items'] = Item::all();
     $data['orders'] = Order::all();
-<<<<<<< HEAD
+
     $data['purchaseItems'] = PurchaseItem::all();
-=======
->>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
+
     return View::make('test', $data);
 });

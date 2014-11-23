@@ -1,6 +1,5 @@
 <table class="summary-widget">
     <tr>
-<<<<<<< HEAD
         <th>Item</th>
         <th>Price</th>
         <th>Quantity</th>
@@ -27,11 +26,5 @@
         <td class="cart-total-price" colspan="100">
             <h2>Total Price: ${{ intToMoney($total) }}</h2>
         </td>
-=======
-        <th class="attribute-label">Type</th>
-        <td>{{ 'Test' }}</td>
-        <th class="attribute-label">Company</th>
-        <td>{{ 'Potato' }}</td>
->>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
     </tr>
 </table>

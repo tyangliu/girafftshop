@@ -353,7 +353,6 @@ input[type=number].buy-quantity {
 .cart-delete {
   text-align: center; }
 
-<<<<<<< HEAD
 .cart-total-price {
   text-align: center;
   padding: 10px 30px; }
@@ -361,8 +360,6 @@ input[type=number].buy-quantity {
     font-family: "museo-sans", sans-serif;
     font-weight: 300; }
 
-=======
->>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
 button.checkout-button {
   background-color: #86b521;
   margin-left: 20px; }

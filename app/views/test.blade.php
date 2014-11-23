@@ -31,7 +31,6 @@
 @endforeach
 </ul>
 
-<<<<<<< HEAD
 <h1>PurchaseItems</h1>
 <ul>
 @foreach ($purchaseItems as $purchaseItem)
@@ -39,8 +38,6 @@
 @endforeach
 </ul>
 
-=======
->>>>>>> d4ea75ad8148036069ecf78156af851b8a387d7a
 <h1>Routes</h1>
 
 <ul>
