@@ -23,3 +23,8 @@ function generateReceiptId() {
     $date = new DateTime();
     return $customerId . $date->getTimestamp();
 }
+
+function generateReturnId() {
+    $date = new DateTime();
+    return $id . $date->getTimestamp();
+}
