@@ -124,6 +124,7 @@ class OrdersController extends \BaseController {
 
         $data['order'] = $order;
         $data['purchaseItems'] = $purchaseItems;
+        $data['returnable'] = $this->isReturnable($order);
 
         return View::make('orders.show', $data);
 	}
@@ -140,6 +141,12 @@ class OrdersController extends \BaseController {
         $days = ceil($totalPending/$this->deliverablePerDay);
 
         return date('Y-m-d', strtotime($orderDate . ' + ' . $days . ' days'));
+    }
+
+    private function isReturnable($order) {
+        $seconds = strtotime(date('Y-m-d')) - strtotime($order->date);
+        $days = ceil($seconds / 86400);
+        return $days <= 15;
     }
 
 }

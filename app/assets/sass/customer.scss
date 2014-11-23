@@ -64,6 +64,7 @@ input[type=text] {
   margin: 30px auto 0;
   text-align: center;
   position: relative;
+  width: 960px;
 }
 
 .icon-set {
@@ -104,9 +105,19 @@ input[type=text] {
   display: inline-block;
 }
 
+.logout-button:hover {
+  background: #fff;
+}
+
 .logout-button:focus {
   outline: none;
 }
+
+.logout-button:active {
+  background: $border-color;
+  transition: all 0s;
+}
+
 
 .item-widget, .order-widget {
   width: 75%;
@@ -116,7 +127,7 @@ input[type=text] {
   text-align: center;
 }
 
-.item-widget h2 {
+.item-widget h2, .order-widget h2 {
   margin: 0;
   padding: 15px 0;
   width: 100%;
@@ -264,21 +275,21 @@ button.checkout-button {
   text-align: center;
 }
 
-.order-widget h2 {
-  margin: 0;
-  padding: 15px 0 0;
-  width: 100%;
-}
-
-.order-widget p {
-  margin-bottom: 18px;
-}
-
 .order-return {
   text-align: center;
 }
 
 .return-quantity-input {
   width: 60px;
+}
+
+.order-details {
+  width: 90%;
+  margin: 60px auto 40px;
+}
+
+.order-items {
+  width: 90%;
+  margin: 20px auto 40px;
 }
 

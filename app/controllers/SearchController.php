@@ -14,7 +14,7 @@ class SearchController extends \BaseController {
 
     public function create()
 	{
-        return View::make('items.index');
+        return View::make('items.search');
 	}
 
 	public function show()

@@ -11,7 +11,7 @@
         <th class="attribute-label">Year</th>
         <td>{{ $item->year }}</td>
     </tr>
-    @if($item->songs)
+    @if(!$item->songs->isEmpty())
     <tr>
         <td colspan=100 class="info-widget-songs">
             <h2>CD Tracks</h2>

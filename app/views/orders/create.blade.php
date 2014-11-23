@@ -1,5 +1,9 @@
 @extends('layouts.customer')
 
+@section('title')
+Checkout
+@stop
+
 @section('content')
 <h1>Checkout</h1>
 

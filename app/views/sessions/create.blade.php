@@ -1,5 +1,9 @@
 @extends('layouts.guest')
 
+@section('title')
+Sign In
+@stop
+
 @section('containerDiv')
     "signin-container"
 @stop

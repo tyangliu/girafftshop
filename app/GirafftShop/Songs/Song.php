@@ -1,4 +1,4 @@
-<?php namespace GirafftShop\Items;
+<?php namespace GirafftShop\Songs;
 
 use Eloquent;
 

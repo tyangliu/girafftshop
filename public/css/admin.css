@@ -84,7 +84,11 @@ a, a h2 {
   font-weight: 700;
   text-decoration: none;
   -webkit-transition: color 0.15s ease-out;
-          transition: color 0.15s ease-out; }
+          transition: color 0.15s ease-out;
+  color: #68625E; }
+
+a:visited {
+  color: #68625E; }
 
 a:hover, a:hover h2 {
   color: #EF941B;
@@ -130,10 +134,13 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, se
   border: 1px solid #EF941B;
   padding: 18px; }
 
-input[type="checkbox"] {
+input[type=text]:disabled, input[type=password]:disabled, input[type=number]:disabled, input[type=checkbox]:disabled + label span, select:disabled {
+  opacity: 0.7; }
+
+input[type=checkbox] {
   display: none; }
 
-input[type="checkbox"] + label span {
+input[type=checkbox] + label span {
   display: inline-block;
   width: 18px;
   height: 18px;
@@ -158,11 +165,58 @@ button, input[type=submit] {
   font-weight: 700;
   color: #fff;
   text-transform: uppercase;
-  margin: 10px 0; }
+  margin: 10px 0;
+  -webkit-transition: all 0.15s ease-out;
+          transition: all 0.15s ease-out; }
+
+button:hover, input[type=submit]:hover {
+  background: #fca235;
+  -webkit-transition: all 0.15s ease-in;
+          transition: all 0.15s ease-in; }
+
+button:focus, input[type=submit]:focus {
+  outline: none; }
+
+button:active, input[type=submit]:active {
+  background: #e5891a;
+  -webkit-transition: all 0s;
+          transition: all 0s; }
 
 .form-label {
   margin-top: 10px;
   color: #9B9B9B; }
+
+.options-dropdown {
+  text-align: left;
+  border-radius: 7px;
+  border: 1px solid #E5E5E5;
+  position: absolute;
+  top: 60px;
+  left: 38.5%;
+  display: none; }
+  .options-dropdown li {
+    padding: 15px;
+    border-bottom: 1px solid #E5E5E5;
+    color: #68625E;
+    -webkit-transition: all 0.15s ease-out;
+            transition: all 0.15s ease-out;
+    background: #fff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15); }
+  .options-dropdown li:hover {
+    background: #EF941B;
+    color: #fff;
+    -webkit-transition: all 0.15s ease-in;
+            transition: all 0.15s ease-in; }
+  .options-dropdown a:last-child li {
+    border-bottom: 0;
+    border-radius: 0 0 7px 7px; }
+  .options-dropdown a:first-child li {
+    border-radius: 7px 7px 0 0; }
+
+#footer {
+  text-align: center;
+  padding: 40px 0;
+  color: #C9C9C9; }
 
 .outer-container {
   background: #fff;
@@ -225,14 +279,16 @@ input[type=text] {
 .toolbar {
   margin: 30px auto 0;
   text-align: center;
-  position: relative; }
+  position: relative;
+  width: 960px; }
 
 .icon-set {
   display: inline-block;
   padding: 0px 20px 0 0;
   border-right: 1px solid #f3b360;
   margin-right: 20px;
-  height: 68px; }
+  height: 68px;
+  position: relative; }
 
 .toolbar-icon {
   display: inline-block;
@@ -243,6 +299,9 @@ input[type=text] {
   height: 40px;
   display: block;
   margin-top: 11px; }
+
+.options-dropdown {
+  left: 33%; }
 
 .cart-label {
   margin-right: 20px; }
@@ -260,8 +319,16 @@ input[type=text] {
   text-transform: uppercase;
   display: inline-block; }
 
+.logout-button:hover {
+  background: #fca235; }
+
 .logout-button:focus {
   outline: none; }
+
+.logout-button:active {
+  background: #e5891a;
+  -webkit-transition: all 0s;
+          transition: all 0s; }
 
 .menu {
   background: #F6F6F6;
@@ -273,7 +340,32 @@ input[type=text] {
   display: inline-block;
   margin: 0 18px; }
   .menu-item a {
-    color: #85807d; }
+    color: #85807d;
+    -webkit-transition: all 0.15s ease-out;
+            transition: all 0.15s ease-out; }
+  .menu-item a:hover {
+    color: #EF941B;
+    -webkit-transition: all 0.15s ease-in;
+            transition: all 0.15s ease-in; }
 
 .current a {
   color: #f1a84b; }
+
+.inventory {
+  width: 90%;
+  margin: 40px auto;
+  border: 1px solid #E5E5E5;
+  border-radius: 7px;
+  text-align: center; }
+
+.center-button {
+  margin: 0px auto; }
+
+.inventory-songs {
+  text-align: center; }
+  .inventory-songs h2 {
+    border-bottom: 1px solid #E5E5E5;
+    margin: 0 20px;
+    padding: 10px 0 20px; }
+  .inventory-songs ul {
+    padding: 20px 0 10px; }

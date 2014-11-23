@@ -18,8 +18,8 @@ class CreateItemsTable extends Migration {
 			$table->integer('upc')->unsigned()->unique();
 			$table->string('title', 64);
 			$table->string('type', 64);
-			$table->string('category', 64);
-			$table->string('company', 64);
+			$table->string('category', 64)->nullable();
+			$table->string('company', 64)->nullable();
 			$table->integer('year')->unsigned();
 			$table->integer('price')->unsigned();
 			$table->integer('stock')->unsigned();

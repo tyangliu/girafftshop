@@ -5,26 +5,20 @@ use GirafftShop\Items\Item;
 use GirafftShop\Orders\Order;
 use GirafftShop\Orders\PurchaseItem;
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
-
+// if not signed in, show sign in page on home
 if( ! Auth::check()) $uses = 'SessionsController@create';
+// else show search page on home
 else $uses = 'SearchController@create';
 
+/**
+ * Home
+ */
 Route::get('/', [
     'as'=>'home',
     'uses'=> $uses
 ]);
 
-/*
+/**
  * Sign up
  */
 Route::get('signup', [
@@ -39,92 +33,167 @@ Route::post('signup', [
 ]);
 
 /**
- * Sessions
+ * Sign In
  */
-/*
-Route::get('login', [
-    'as' => 'login_path',
-    'uses' => 'SessionsController@create'
-]);
-*/
+
 Route::post('login', [
     'as' => 'login_path',
     'before' => 'csrf',
     'uses' => 'SessionsController@store'
 ]);
-Route::get('logout', [
-    'as' => 'logout_path',
-    'uses' => 'SessionsController@destroy'
-]);
 
-/**
- * Item Search
- */
-Route::get('search', [
-    'as' => 'search_path',
-    'uses' => 'SearchController@show'
-]);
+/*
+|--------------------------------------------------------------------------
+| Clerk Routes
+|--------------------------------------------------------------------------
+|
+*/
 
-Route::get('items/new', [
-    'as' => 'newItem_path',
-    'uses' => 'ItemsController@create'
-]);
-Route::post('items/new', [
-    'as' => 'newItem_path',
-    'uses' => 'ItemsController@store'
-]);
+Route::group(['before' => 'auth'], function()
+{
 
-Route::get('items/edit', [
-    'as' => 'editItem_path',
-    'uses' => 'ItemsController@edit'
-]);
-Route::post('items/edit', [
-    'as' => 'editItem_path',
-    'uses' => 'ItemsController@update'
-]);
+});
 
-Route::get('items/{upc}', [
-    'as' => 'showItem_path',
-    'uses' => 'ItemsController@show'
-]);
+/*
+|--------------------------------------------------------------------------
+| Manager Routes
+|--------------------------------------------------------------------------
+|
+*/
 
-Route::get('cart', [
-    'as' => 'cart_path',
-    'uses' => 'CartController@index'
-]);
+Route::group(['before' => 'auth'], function()
+{
+    /**
+     * Dashboard
+     */
+    Route::get('dashboard', [
+        'as' => 'dashboard_path',
+        'uses' => 'PanelController@showDashboard'
+    ]);
+    /**
+     * Item Management
+     */
 
-Route::post('cart/add', [
-    'as' => 'addToCart_path',
-    'uses' => 'CartController@store'
-]);
+    Route::get('inventory', [
+        'as' => 'inventory_path',
+        'uses' => 'ItemsController@index'
+    ]);
 
-Route::post('cart/update', [
-    'as' => 'updateCart_path',
-    'uses' => 'CartController@update'
-]);
+    Route::get('inventory/new', [
+        'as' => 'newItem_path',
+        'uses' => 'ItemsController@create'
+    ]);
+    Route::post('inventory/new', [
+        'as' => 'newItem_path',
+        'uses' => 'ItemsController@store'
+    ]);
+    Route::get('inventory/{upc}', [
+        'as' => 'editItem_path',
+        'uses' => 'ItemsController@edit'
+    ]);
+    Route::post('inventory/{upc}', [
+        'as' => 'editItem__path',
+        'uses' => 'ItemsController@update'
+    ]);
 
-/**
- * Orders 
- */
-Route::get('orders/', [
-    'as' => 'orders_path',
-    'uses' => 'OrdersController@index'
-]);
-Route::get('orders/new', [
-    'as' => 'newOrder_path',
-    'uses' => 'OrdersController@create'
-]);
-Route::post('orders/new', [
-    'as' => 'newOrder_path',
-    'uses' => 'OrdersController@store'
-]);
-Route::get('orders/{receiptId}', [
-    'as' => 'showOrder_path',
-    'uses' => 'OrdersController@show'
-]);
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::group(['before' => 'auth'], function()
+{
+
+});
 
 
-/* -------- test functions -------- */
+/*
+|--------------------------------------------------------------------------
+| Customer Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::group(['before' => 'auth'], function()
+{
+
+    Route::get('logout', [
+        'as' => 'logout_path',
+        'uses' => 'SessionsController@destroy'
+    ]);
+
+    /**
+     * Item Search
+     */
+    Route::get('search', [
+        'as' => 'search_path',
+        'uses' => 'SearchController@show'
+    ]);
+
+    /**
+     * Individual Item Page
+     */
+
+    Route::get('items/{upc}', [
+        'as' => 'showItem_path',
+        'uses' => 'ItemsController@show'
+    ]);
+
+
+    /**
+     * Shopping Cart
+     */
+
+    Route::get('cart', [
+        'as' => 'cart_path',
+        'uses' => 'CartController@index'
+    ]);
+
+    Route::post('cart/add', [
+        'as' => 'addToCart_path',
+        'uses' => 'CartController@store'
+    ]);
+
+    Route::post('cart/update', [
+        'as' => 'updateCart_path',
+        'uses' => 'CartController@update'
+    ]);
+
+    /**
+     * Orders
+     */
+    Route::get('orders/', [
+        'as' => 'orders_path',
+        'uses' => 'OrdersController@index'
+    ]);
+    Route::get('orders/new', [
+        'as' => 'newOrder_path',
+        'uses' => 'OrdersController@create'
+    ]);
+    Route::post('orders/new', [
+        'as' => 'newOrder_path',
+        'uses' => 'OrdersController@store'
+    ]);
+    Route::get('orders/{receiptId}', [
+        'as' => 'showOrder_path',
+        // redirect back to orders list if requested order doesn't belong to user
+        'before' => 'belongsToUser',
+        'uses' => 'OrdersController@show'
+    ]);
+
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Test Routes
+|--------------------------------------------------------------------------
+|
+*/
 Route::get('test', function() {
 
     $data['customers'] = Customer::all();

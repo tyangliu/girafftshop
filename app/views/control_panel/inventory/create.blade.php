@@ -1,4 +1,8 @@
-@extends('layouts.admin')
+@extends('......layouts.admin')
+
+@section('title')
+Add a New Item
+@stop
 
 @section('content')
 <h1>Add a new item</h1>

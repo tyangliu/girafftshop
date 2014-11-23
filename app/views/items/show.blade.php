@@ -1,5 +1,9 @@
 @extends('layouts.customer')
 
+@section('title')
+{{ $item->title }}
+@stop
+
 @section('content')
     <h1 class="item-title">{{ $item->title }}</h1>
     @if( $item->leadSinger )

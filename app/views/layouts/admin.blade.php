@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="theme-color" content="#EF941B">
-    <title>Document</title>
+    <title>@yield('title') - GirafftShop Control Panel</title>
     {{ HTML::style('css/admin.css') }}
 
-    <script src="//use.typekit.net/qxd7bbj.js"></script>
+    {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js') }}
+    {{ HTML::script('js/menu-toggle.js') }}
+    {{ HTML::script('//use.typekit.net/qxd7bbj.js') }}
     <script>try{Typekit.load();}catch(e){}</script>
 
 </head>
@@ -18,26 +20,20 @@
         </div>
         <div class="toolbar">
             <div class="icon-set">
-            <a href="" class="toolbar-icon">{{ HTML::image('images/icon_cog_white.svg', 'Options') }}</a>
+            <span class="toolbar-icon options-switch">{{ HTML::image('images/icon_cog_white.svg', 'Options') }}</span>
             </div>
             <a href="{{ action('SessionsController@destroy') }}">{{ Form::button('Logout',['class'=>'logout-button']) }}</a>
+            @include('layouts.partials.admin_options')
         </div>
     </header>
 
-    <div class="menu">
-        <ul>
-            <li class="menu-item current"><a href="">Dashboard</a></li>
-            <li class="menu-item"><a href="">Process Refund</a></li>
-            <li class="menu-item"><a href="">Add Items to Inventory</a></li>
-            <li class="menu-item"><a href="">Generate Sales Report</a></li>
-            <li class="menu-item"><a href="">Check Top-Selling Items</a></li>
-        </ul>
-    </div>
+    @include('layouts.partials.menu')
 
     <div class="outer-container">
         <div class="content">
             @yield('content')
         </div>
     </div>
+    @include('layouts.partials.footer')
 </body>
 </html>

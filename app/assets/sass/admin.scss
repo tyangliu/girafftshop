@@ -78,6 +78,7 @@ input[type=text] {
   margin: 30px auto 0;
   text-align: center;
   position: relative;
+  width: 960px;
 }
 
 .icon-set {
@@ -86,6 +87,7 @@ input[type=text] {
   border-right: 1px solid $h-divider-color;
   margin-right: 20px;
   height: 68px;
+  position: relative;
 }
 
 .toolbar-icon {
@@ -98,6 +100,10 @@ input[type=text] {
   height: 40px;
   display: block;
   margin-top: 11px;
+}
+
+.options-dropdown {
+  left: 33%;
 }
 
 .cart-label {
@@ -118,8 +124,17 @@ input[type=text] {
   display: inline-block;
 }
 
+.logout-button:hover {
+  background: $faded-accent-color;
+}
+
 .logout-button:focus {
   outline: none;
+}
+
+.logout-button:active {
+  background: $dark-accent-color;
+  transition: all 0s;
 }
 
 .menu {
@@ -133,13 +148,43 @@ input[type=text] {
   display: inline-block;
   margin: 0 18px;
 
-  a{
+  a {
     color: $menu-text-color;
+    transition: all 0.15s ease-out;
+  }
+
+  a:hover {
+    color: $accent-color;
+    transition: all 0.15s ease-in;
   }
 }
 
-.current {
-  a {
-    color: $menu-current-color;
+.current a {
+  color: $menu-current-color;
+}
+
+.inventory {
+  width: 90%;
+  margin: 40px auto;
+  border: 1px solid $border-color;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.center-button {
+  margin: 0px auto;
+}
+
+.inventory-songs {
+  text-align: center;
+
+  h2 {
+    border-bottom: 1px solid $border-color;
+    margin: 0 20px;
+    padding: 10px 0 20px;
+  }
+
+  ul {
+    padding: 20px 0 10px;
   }
 }

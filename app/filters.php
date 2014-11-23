@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::guest('/');
 		}
 	}
 });
@@ -87,4 +87,16 @@ Route::filter('csrf', function()
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
+});
+
+Route::filter('belongsToUser', function($route)
+{
+    $orderRepository = new \GirafftShop\Repos\OrderRepository(new \GirafftShop\Orders\Order());
+
+    $receiptId = $route->getParameter('receiptId');
+
+    $orderUsername = $orderRepository->getByField('receiptId', $receiptId)->first()->cUsername;
+    if(Auth::user()->username != $orderUsername) {
+        return Redirect::route('orders_path');
+    }
 });

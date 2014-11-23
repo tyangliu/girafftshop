@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="theme-color" content="#EF941B">
-    <title>Document</title>
+    <title>@yield('title') - GirafftShop</title>
     {{ HTML::style('css/guest.css') }}
 
     <script src="//use.typekit.net/qxd7bbj.js"></script>

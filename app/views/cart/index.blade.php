@@ -1,5 +1,9 @@
 @extends('layouts.customer')
 
+@section('title')
+Shopping Cart
+@stop
+
 @section('content')
     <h1>Shopping Cart</h1>
 @if(!empty($items))

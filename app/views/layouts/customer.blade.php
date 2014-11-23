@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="theme-color" content="#EF941B">
-    <title>Document</title>
+    <title>@yield('title') - GirafftShop</title>
     {{ HTML::style('css/customer.css') }}
 
-    <script src="//use.typekit.net/qxd7bbj.js"></script>
+    {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js') }}
+    {{ HTML::script('js/menu-toggle.js') }}
+    {{ HTML::script('//use.typekit.net/qxd7bbj.js') }}
     <script>try{Typekit.load();}catch(e){}</script>
 
 </head>
@@ -17,15 +19,15 @@
         </div>
         <div class="toolbar">
             <div class="icon-set">
-            <a href="/cart" class="toolbar-icon">{{ HTML::image('images/icon_cart.svg', 'Shopping Cart') }}</a>
+            <a href="{{ URL::route('cart_path') }}" class="toolbar-icon">{{ HTML::image('images/icon_cart.svg', 'Shopping Cart') }}</a>
             <span class="inline cart-label">
                 {{ count(Session::get('cart')) }}
                 {{ (count(Session::get('cart')) == 1) ? 'Item' : 'Items' }}
-                {{-- json_encode(Session::get('cart')) --}}
             </span>
-            <a href="" class="toolbar-icon">{{ HTML::image('images/icon_cog.svg', 'Options') }}</a>
+            <span class="toolbar-icon options-switch">{{ HTML::image('images/icon_cog.svg', 'Options') }}</span>
             </div>
             <a href="{{ action('SessionsController@destroy') }}">{{ Form::button('Logout',['class'=>'logout-button']) }}</a>
+            @include('layouts.partials.customer_options')
         </div>
     </header>
 
@@ -34,5 +36,6 @@
             @yield('content')
         </div>
     </div>
+    @include('layouts.partials.footer')
 </body>
 </html>

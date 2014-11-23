@@ -15,7 +15,7 @@ class Item extends \Eloquent {
         return $this->belongsTo('GirafftShop\LeadSingers\LeadSinger', 'upc', 'item_upc');
     }
 
-    public function itemHasSongs()
+    public function songs()
     {
         return $this->hasMany('GirafftShop\Songs\Song', 'item_upc', 'upc');
     }

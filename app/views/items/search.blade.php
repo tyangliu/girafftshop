@@ -1,5 +1,9 @@
 @extends('layouts.customer')
 
+@section('title')
+Home
+@stop
+
 @section('content')
 <h1>What are you looking for today?</h1>
 

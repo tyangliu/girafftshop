@@ -1,7 +1,11 @@
 @extends('layouts.customer')
 
+@section('title')
+Orders
+@stop
+
 @section('content')
-    <h1>Your Orders</h1>
+    <h1>Orders</h1>
 
 @if(!$orders->isEmpty())
     @foreach($orders as $order)
