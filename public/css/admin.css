@@ -395,3 +395,6 @@ button.add-songs-button:active {
     padding: 10px 0 20px; }
   .inventory-songs ul {
     padding: 20px 0 10px; }
+
+.inventory-empty {
+  margin-bottom: 50px; }

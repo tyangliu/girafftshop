@@ -6,6 +6,7 @@ Inventory
 
 @section('content')
 <h1>Inventory</h1>
+@if(!$items->isEmpty())
     <table class="cp-table">
         <tr>
             <th>Title</th>
@@ -24,6 +25,9 @@ Inventory
         </tr>
     @endforeach
     </table>
+@else
+<p class="center inventory-empty">There are no items in the inventory.</p>
+@endif
 <div class="center">
     <a href="{{ action('ItemsController@create') }}">
         {{ Form::button('Add New Item') }}
