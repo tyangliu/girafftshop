@@ -7,9 +7,9 @@ class AddSongCommand {
 
     public $title;
 
-    function __construct($upc, $title)
+    function __construct($item_upc, $title)
     {
-        $this->item_upc = $upc;
+        $this->item_upc = $item_upc;
         $this->title = $title;
     }
 

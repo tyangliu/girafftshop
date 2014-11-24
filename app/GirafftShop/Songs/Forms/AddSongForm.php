@@ -5,7 +5,7 @@ use FormValidator;
 class AddSongForm extends FormValidator {
 
     protected $rules = [
-        'upc' => 'required|integer',
+        'item_upc' => 'required|integer',
         'title' => 'required'
     ];
 } 

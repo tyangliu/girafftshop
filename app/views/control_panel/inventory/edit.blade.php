@@ -63,7 +63,11 @@
 
         {{-- Submit Button --}}
             <dd class="form-button inline">{{ Form::submit('Update Item') }}</dd>
-            <dd class="form-button inline">{{ Form::button('Add Songs', ['class' => 'add-songs-button']) }}</dd>
+            <dd class="form-button inline">
+                <a href="{{ URL::route('addSongs_path', [$item->upc]) }}">
+                    {{ Form::button('Add Songs', ['class' => 'add-songs-button']) }}
+                </a>
+            </dd>
         </dl>
     {{ Form::close() }}
     </div>

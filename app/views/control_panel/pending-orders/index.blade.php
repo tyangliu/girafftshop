@@ -17,7 +17,7 @@ Orders
         </tr>
 		@foreach($orders as $order)
             <tr>
-            	<td><a href="{{ URL::route('cp_showOrder_path', [$order->receiptId])}}">{{ $order->receiptId }}</a></td>
+            	<td><a href="{{ URL::route('cp_showOrder_path', [$order->receiptId]) }}">{{ $order->receiptId }}</a></td>
             	<td>{{ formatDate($order->date) }}</td>
             	<td>{{ formatDate($order->expectedDate) }}</td>
             	<td>{{ $order->cUsername }}</td>

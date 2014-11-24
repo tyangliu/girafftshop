@@ -40,7 +40,7 @@ class DeliveryController extends \BaseController {
 
         $this->execute(EditOrderCommand::class, $input);
 
-        return Redirect::route('cp_showOrder_path', $receiptId);
+        return Redirect::route('cp_orders_path');
     }
 
 }

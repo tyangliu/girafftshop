@@ -5,5 +5,5 @@ Dashboard
 @stop
 
 @section('content')
-Test
+<h1>Haha funny</h1>
 @stop

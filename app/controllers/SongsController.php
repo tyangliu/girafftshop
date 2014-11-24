@@ -2,6 +2,7 @@
 
 use GirafftShop\Repos\SongRepository;
 use GirafftShop\Songs\Forms\AddSongForm;
+use GirafftShop\Songs\Commanding\AddSongCommand;
 
 class SongsController extends \BaseController {
 
@@ -14,18 +15,30 @@ class SongsController extends \BaseController {
         $this->addSongForm = $addSongForm;
     }
 
-    public function create($receiptId)
+    public function create($upc)
     {
-        return View::make('control_panel.songs.create', )
+        $data['upc'] = $upc;
+
+        return View::make('control_panel.inventory.songs.create', $data);
     }
 
-    public function update($receiptId)
+    public function store($upc)
     {
-        $input = array_add(Input::all(), 'receiptId', $receiptId);
+        $titles = filterEmpty(Input::get('titles'));
 
-        $this->execute(EditOrderCommand::class, $input);
+        foreach ($titles as $title)
+        {
+            $input = ['title' => $title, 'item_upc' => $upc];
 
-        return Redirect::route('cp_showOrder_path', $receiptId);
+            $this->addSongForm->validate($input);
+
+
+            if ($this->songRepository->getByField('title', $title)->isEmpty())
+                $this->execute(AddSongCommand::class, $input);
+
+        }
+
+        return Redirect::route('editItem_path', $upc);
     }
 
 }

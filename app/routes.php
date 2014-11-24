@@ -94,6 +94,14 @@ Route::group(['before' => 'auth'], function()
         'as' => 'editItem__path',
         'uses' => 'ItemsController@update'
     ]);
+    Route::get('cp/inventory/{upc}/add-songs', [
+        'as' => 'addSongs_path',
+        'uses' => 'SongsController@create'
+    ]);
+    Route::post('cp/inventory/{upc}/add-songs', [
+        'as' => 'addSongs_path',
+        'uses' => 'SongsController@store'
+    ]);
 
     /**
      * Pending Orders
