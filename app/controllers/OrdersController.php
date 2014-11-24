@@ -15,7 +15,7 @@ class OrdersController extends \BaseController {
 	private $makeOrderForm;
     private $orderRepository;
     private $itemRepository;
-    // set number of deliverable orders per day
+    // set number of deliverable pending-orders per day
     private $deliverablePerDay = 1;
 
 	function __construct(Store $session,
@@ -31,7 +31,7 @@ class OrdersController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /orders
+	 * GET /pending-orders
 	 *
 	 * @return Response
 	 */
@@ -43,7 +43,7 @@ class OrdersController extends \BaseController {
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /orders/create
+	 * GET /pending-orders/create
 	 *
 	 * @return Response
 	 */
@@ -57,7 +57,7 @@ class OrdersController extends \BaseController {
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /orders
+	 * POST /pending-orders
 	 *
 	 * @return Response
 	 */
@@ -112,7 +112,7 @@ class OrdersController extends \BaseController {
 
 	/**
 	 * Display the specified resource.
-	 * GET /orders/{id}
+	 * GET /pending-orders/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response

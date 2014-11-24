@@ -11,7 +11,7 @@ function intToMoney($int) {
 }
 
 function formatDate($date) {
-    return date("m\/d\/y", strtotime($date));
+    return date("m/d/y", strtotime($date));
 }
 
 function currentPage($page) {

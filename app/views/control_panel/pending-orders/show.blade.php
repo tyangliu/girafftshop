@@ -30,8 +30,8 @@ Order #{{ $order->receiptId }}
         {{ Form::open(['route' => ['cp_showOrder_path', $order->receiptId]]) }}
         <dl>
             <dt class="form-label">{{ Form::label('deliveredDate', 'Delivered On') }}</dt>
-            <dt>{{ Form::text('deliveredDate', date('Y-m-d', time()), ['class' => 'form-control']) }}</dt>
-            {{ Form::submit('Update Selected Order') }}
+            <dd>{{ Form::text('deliveredDate', date('m/d/y', time()), ['class' => 'form-control']) }}</dd>
+            <dd class="form-button">{{ Form::submit('Update Selected Order') }}</dd>
 
         </dl>
         {{ Form::close() }}

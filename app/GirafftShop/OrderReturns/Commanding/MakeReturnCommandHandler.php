@@ -1,7 +1,7 @@
-<?php namespace GirafftShop\Returns\Commanding;
+<?php namespace GirafftShop\OrderReturns\Commanding;
 use CommandHandler;
 use GirafftShop\Repos\ReturnRepository;
-use GirafftShop\Returns\Return;
+use GirafftShop\OrderReturns\OrderReturn;
 class MakeReturnCommandHandler implements CommandHandler {
     protected $repository;
     function __construct(ReturnRepository $repository)
@@ -16,12 +16,14 @@ class MakeReturnCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-        $return = Return::make([
-            'receiptId'     => $command->receiptId,
-            'date'          => $command->date,
-            'returnID     => $command->returnId,
+        $return = OrderReturn::make([
+            'receiptId'   => $command->receiptId,
+            'date'        => $command->date,
+            'returnID'    => $command->returnId,
         ]);
+
         $this->repository->save($return);
+
         return $return;
     }
 }

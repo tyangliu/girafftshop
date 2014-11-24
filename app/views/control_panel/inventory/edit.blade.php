@@ -62,7 +62,8 @@
             <dd>{{ Form::text('price', null) }}</dd>
 
         {{-- Submit Button --}}
-            <dd class="form-button">{{ Form::submit('Edit Item') }}</dd>
+            <dd class="form-button inline">{{ Form::submit('Update Item') }}</dd>
+            <dd class="form-button inline">{{ Form::button('Add Songs', ['class' => 'add-songs-button']) }}</dd>
         </dl>
     {{ Form::close() }}
     </div>

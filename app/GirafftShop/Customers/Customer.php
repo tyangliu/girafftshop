@@ -31,7 +31,7 @@ class Customer extends Eloquent implements UserInterface {
     protected $hidden = array('password', 'remember_token');
 
     /**
-     * Get the orders of the customer
+     * Get the pending-orders of the customer
      *
      * @return array
      */

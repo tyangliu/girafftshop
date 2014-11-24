@@ -71,7 +71,7 @@ h2 {
 a, a h2 {
   font-weight: 700;
   text-decoration: none;
-  transition: color 0.15s ease-out;
+  transition: color 0.1s ease-out;
   color: $text-color;
 }
 
@@ -81,7 +81,7 @@ a:visited {
 
 a:hover, a:hover h2 {
   color: $accent-color;
-  transition: color 0.15s ease-in;
+  transition: color 0.1s ease-in;
 }
 
 table {
@@ -180,12 +180,12 @@ button, input[type=submit] {
   color: #fff;
   text-transform: uppercase;
   margin: 10px 0;
-  transition: all 0.15s ease-out;
+  transition: all 0.1s ease-out;
 }
 
 button:hover, input[type=submit]:hover {
   background: $faded-accent-color;
-  transition: all 0.15s ease-in;
+  transition: all 0.1s ease-in;
 }
 
 button:focus, input[type=submit]:focus {
@@ -200,6 +200,7 @@ button:active, input[type=submit]:active {
 .form-label {
   margin-top: 10px;
   color: $faded-text-color;
+  text-align: left;
 }
 
 .options-dropdown {
@@ -215,7 +216,7 @@ button:active, input[type=submit]:active {
     padding: 15px;
     border-bottom: 1px solid $border-color;
     color: $text-color;
-    transition: all 0.15s ease-out;
+    transition: all 0.1s ease-out;
     background: #fff;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
   }
@@ -223,7 +224,7 @@ button:active, input[type=submit]:active {
   li:hover {
     background: $accent-color;
     color: #fff;
-    transition: all 0.15s ease-in;
+    transition: all 0.1s ease-in;
   }
 
   a:last-child li {

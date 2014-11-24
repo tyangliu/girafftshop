@@ -263,8 +263,18 @@ input[type=number].buy-quantity {
 }
 
 button.checkout-button {
-  background-color: #86b521;
+  background: #86b521;
   margin-left: 20px;
+  transition: all 0.1s ease-out;
+}
+
+button.checkout-button:hover {
+  background: #95bf22;
+  transition: all 0.1s ease-in;
+}
+button.checkout-button:active {
+  background: #7fa31c;
+  transition: all 0;
 }
 
 .summary-widget {

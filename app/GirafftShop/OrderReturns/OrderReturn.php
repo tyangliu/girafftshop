@@ -1,4 +1,4 @@
-<?php
+<?php namespace GirafftShop\OrderReturns;
 
 class OrderReturn extends \Eloquent {
 	protected $guarded = [];

@@ -1,4 +1,4 @@
-<?php namespace GirafftShop\Returns\Forms;
+<?php namespace GirafftShop\OrderReturns\Forms;
 use FormValidator;
 class MakeReturnForm extends FormValidator {
     /**

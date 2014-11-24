@@ -68,7 +68,7 @@ Route::group(['before' => 'auth'], function()
      */
     Route::get('cp', [
         'as' => 'dashboard_path',
-        'uses' => 'PanelController@showDashboard'
+        'uses' => 'ReportsController@showDashboard'
     ]);
     /**
      * Item Management
@@ -78,7 +78,6 @@ Route::group(['before' => 'auth'], function()
         'as' => 'inventory_path',
         'uses' => 'ItemsController@index'
     ]);
-
     Route::get('cp/inventory/new', [
         'as' => 'newItem_path',
         'uses' => 'ItemsController@create'
@@ -95,18 +94,47 @@ Route::group(['before' => 'auth'], function()
         'as' => 'editItem__path',
         'uses' => 'ItemsController@update'
     ]);
-    Route::get('cp/orders', [
+
+    /**
+     * Pending Orders
+     */
+    Route::get('cp/pending-orders', [
         'as' => 'cp_orders_path',
-        'uses' => 'CpOrdersController@index'
+        'uses' => 'DeliveryController@index'
     ]);
-    Route::get('cp/orders/{receiptId}', [
+    Route::get('cp/pending-orders/{receiptId}', [
         'as' => 'cp_showOrder_path',
-        'uses' => 'CpOrdersController@show'
+        'uses' => 'DeliveryController@show'
     ]);
-    Route::post('cp/orders/{receiptId}', [
+    Route::post('cp/pending-orders/{receiptId}', [
         'as' => 'cp_showOrder_path',
-        'uses' => 'CpOrdersController@update'
+        'uses' => 'DeliveryController@update'
     ]);
+
+    /**
+     * Daily Sales
+     */
+    Route::get('cp/reports', [
+        'as' => 'createSales_path',
+        'uses' => 'ReportsController@createDailySales'
+    ]);
+    Route::get('cp/reports/generate', [
+        'as' => 'showSales_path',
+        'uses' => 'ReportsController@showDailySales'
+    ]);
+
+    /**
+     * Top Selling
+     */
+    Route::get('cp/top-selling', [
+        'as' => 'createTop_path',
+        'uses' => 'ReportsController@createTopSelling'
+    ]);
+    Route::get('cp/top-selling/generate', [
+        'as' => 'showTop_path',
+        'uses' => 'ReportsController@showTopSelling'
+    ]);
+
 
 });
 
@@ -192,7 +220,7 @@ Route::group(['before' => 'auth'], function()
     ]);
     Route::get('orders/{receiptId}', [
         'as' => 'showOrder_path',
-        // redirect back to orders list if requested order doesn't belong to user
+        // redirect back to pending-orders list if requested order doesn't belong to user
         'before' => 'belongsToUser',
         'uses' => 'OrdersController@show'
     ]);

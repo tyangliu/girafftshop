@@ -1,4 +1,4 @@
-<?php
+<?php namespace GirafftShop\OrderReturns;
 
 class ReturnItem extends \Eloquent {
 	protected $fillable = [];

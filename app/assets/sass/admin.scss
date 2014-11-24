@@ -171,8 +171,34 @@ input[type=text] {
   text-align: center;
 }
 
-.center-button {
-  margin: 0px auto;
+.cp-table-bold {
+  font-weight: $bold-weight;
+}
+
+.daily-sales-total {
+  text-align: center;
+  padding: 10px 30px;
+  h2 {
+    font-family: $primary-font;
+    font-weight: $primary-weight;
+    display: inline-block;
+    padding: 0 30px;
+  }
+}
+
+button.add-songs-button {
+  background: #86b521;
+  margin-left: 20px;
+  transition: all 0.1s ease-out;
+}
+
+button.add-songs-button:hover {
+  background: #95bf22;
+  transition: all 0.1s ease-in;
+}
+button.add-songs-button:active {
+  background: #7fa31c;
+  transition: all 0;
 }
 
 .inventory-songs {

@@ -83,8 +83,8 @@ h2 {
 a, a h2 {
   font-weight: 700;
   text-decoration: none;
-  -webkit-transition: color 0.15s ease-out;
-          transition: color 0.15s ease-out;
+  -webkit-transition: color 0.1s ease-out;
+          transition: color 0.1s ease-out;
   color: #68625E; }
 
 a:visited {
@@ -92,8 +92,8 @@ a:visited {
 
 a:hover, a:hover h2 {
   color: #EF941B;
-  -webkit-transition: color 0.15s ease-in;
-          transition: color 0.15s ease-in; }
+  -webkit-transition: color 0.1s ease-in;
+          transition: color 0.1s ease-in; }
 
 table {
   border-collapse: separate;
@@ -166,13 +166,13 @@ button, input[type=submit] {
   color: #fff;
   text-transform: uppercase;
   margin: 10px 0;
-  -webkit-transition: all 0.15s ease-out;
-          transition: all 0.15s ease-out; }
+  -webkit-transition: all 0.1s ease-out;
+          transition: all 0.1s ease-out; }
 
 button:hover, input[type=submit]:hover {
   background: #fca235;
-  -webkit-transition: all 0.15s ease-in;
-          transition: all 0.15s ease-in; }
+  -webkit-transition: all 0.1s ease-in;
+          transition: all 0.1s ease-in; }
 
 button:focus, input[type=submit]:focus {
   outline: none; }
@@ -184,7 +184,8 @@ button:active, input[type=submit]:active {
 
 .form-label {
   margin-top: 10px;
-  color: #9B9B9B; }
+  color: #9B9B9B;
+  text-align: left; }
 
 .options-dropdown {
   text-align: left;
@@ -198,15 +199,15 @@ button:active, input[type=submit]:active {
     padding: 15px;
     border-bottom: 1px solid #E5E5E5;
     color: #68625E;
-    -webkit-transition: all 0.15s ease-out;
-            transition: all 0.15s ease-out;
+    -webkit-transition: all 0.1s ease-out;
+            transition: all 0.1s ease-out;
     background: #fff;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15); }
   .options-dropdown li:hover {
     background: #EF941B;
     color: #fff;
-    -webkit-transition: all 0.15s ease-in;
-            transition: all 0.15s ease-in; }
+    -webkit-transition: all 0.1s ease-in;
+            transition: all 0.1s ease-in; }
   .options-dropdown a:last-child li {
     border-bottom: 0;
     border-radius: 0 0 7px 7px; }
@@ -358,8 +359,33 @@ input[type=text] {
   border-radius: 7px;
   text-align: center; }
 
-.center-button {
-  margin: 0px auto; }
+.cp-table-bold {
+  font-weight: 700; }
+
+.daily-sales-total {
+  text-align: center;
+  padding: 10px 30px; }
+  .daily-sales-total h2 {
+    font-family: "museo-sans", sans-serif;
+    font-weight: 300;
+    display: inline-block;
+    padding: 0 30px; }
+
+button.add-songs-button {
+  background: #86b521;
+  margin-left: 20px;
+  -webkit-transition: all 0.1s ease-out;
+          transition: all 0.1s ease-out; }
+
+button.add-songs-button:hover {
+  background: #95bf22;
+  -webkit-transition: all 0.1s ease-in;
+          transition: all 0.1s ease-in; }
+
+button.add-songs-button:active {
+  background: #7fa31c;
+  -webkit-transition: all 0;
+          transition: all 0; }
 
 .inventory-songs {
   text-align: center; }

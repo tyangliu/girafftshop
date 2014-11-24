@@ -1,4 +1,4 @@
-<?php namespace GirafftShop\Returns\Commanding;
+<?php namespace GirafftShop\OrderReturns\Commanding;
 class MakeReturnCommand {
     public $returnId;
     public $date;

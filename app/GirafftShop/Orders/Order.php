@@ -35,8 +35,8 @@ class Order extends \Eloquent {
         $this->attributes['expectedDate'] = date("Y-m-d", strtotime($expectedDate));
     }
 
-    public function setDeliveryDateAttribute($deliveryDate)
+    public function setDeliveredDateAttribute($deliveredDate)
     {
-        $this->attributes['deliveryDate'] = date("Y-m-d", strtotime($deliveryDate));
+        $this->attributes['deliveredDate'] = date("Y-m-d", strtotime($deliveredDate));
     }
 }

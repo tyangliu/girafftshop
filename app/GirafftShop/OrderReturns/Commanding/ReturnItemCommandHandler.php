@@ -2,7 +2,7 @@
 use CommandHandler;
 use GirafftShop\Repos\ItemRepository;
 use GirafftShop\Repos\ReturnItemRepository;
-use GirafftShop\Returns\Returntem;
+use GirafftShop\OrderReturns\ReturnItem;
 class ReturntemCommandHandler implements CommandHandler {
     protected $returnItemRepository;
     protected $itemRepository;
@@ -20,7 +20,7 @@ class ReturntemCommandHandler implements CommandHandler {
     public function handle($command)
     {
         $returnItem = ReturnItem::add([
-            'order_returntId' => $command->order_returnId,
+            'return_returnId' => $command->return_returnId,
             'item_upc'        => $command->item_upc,
             'quantity'        => $command->quantity
         ]);
