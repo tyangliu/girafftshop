@@ -95,6 +95,18 @@ Route::group(['before' => 'auth'], function()
         'as' => 'editItem__path',
         'uses' => 'ItemsController@update'
     ]);
+    Route::get('cp/orders', [
+        'as' => 'cp_orders_path',
+        'uses' => 'CpOrdersController@index'
+    ]);
+    Route::get('cp/orders/{receiptId}', [
+        'as' => 'cp_showOrder_path',
+        'uses' => 'CpOrdersController@show'
+    ]);
+    Route::post('cp/orders/{receiptId}', [
+        'as' => 'cp_showOrder_path',
+        'uses' => 'CpOrdersController@update'
+    ]);
 
 });
 

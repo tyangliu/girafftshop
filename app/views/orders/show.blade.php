@@ -18,7 +18,7 @@ Order #{{ $order->receiptId }}
             <th>Total Price</th>
             <th>Order Date</th>
             <th>Estimated Delivery Date</th>
-            @if($order->deliveryDate != null)
+            @if($order->deliveredDate != null)
             <th>Delivered On</th>
             @endif
         </tr>

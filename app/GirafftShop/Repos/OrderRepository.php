@@ -23,6 +23,14 @@ class OrderRepository extends Repository {
         return $order->save();
     }
 
+    public function update($receiptId, $deliveredDate)
+    {
+        $order = $this->getByField('receiptId', $receiptId)->first();
+        $order->deliveredDate = $deliveredDate;
+
+        return $order->save();
+    }
+
     public function getPending()
     {
         return $this->model->where('deliveredDate', null)->get();
