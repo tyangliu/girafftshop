@@ -2,12 +2,12 @@
 class MakeReturnCommand {
     public $returnId;
     public $date;
-    public $receiptId;
+    public $order_receiptId;
 
-    function __construct($returnId, $date, $receiptId)
+    function __construct($returnId, $date, $order_receiptId)
     {
         $this->returnId= $returnId;
-        $this->receiptId = $receiptId;
+        $this->order_receiptId = $order_receiptId;
         $this->date = $date;
 
     }

@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title')
-Pending Orders
+Returnable Orders
 @stop
 
 @section('content')
-    <h1>Pending Orders</h1>
+    <h1>Returnable Orders</h1>
     @if(!$orders->isEmpty())
     <table class="cp-table">
 
@@ -17,7 +17,7 @@ Pending Orders
         </tr>
 		@foreach($orders as $order)
             <tr>
-            	<td><a href="{{ URL::route('cp_showOrder_path', [$order->receiptId]) }}">{{ $order->receiptId }}</a></td>
+            	<td><a href="{{ URL::route('showReturnable_path', [$order->receiptId]) }}">{{ $order->receiptId }}</a></td>
             	<td>{{ formatDate($order->date) }}</td>
             	<td>{{ formatDate($order->expectedDate) }}</td>
             	<td>{{ $order->cUsername }}</td>
@@ -26,7 +26,7 @@ Pending Orders
 
     </table>
     @else
-        <p class="center">There are no pending orders.</p>
+        <p class="center">There are no orders eligible for return.</p>
     @endif
 
 @stop

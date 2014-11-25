@@ -1,9 +1,9 @@
-<?php namespace GirafftShop\Returns\Commanding;
+<?php namespace GirafftShop\OrderReturns\Commanding;
 use CommandHandler;
 use GirafftShop\Repos\ItemRepository;
 use GirafftShop\Repos\ReturnItemRepository;
 use GirafftShop\OrderReturns\ReturnItem;
-class ReturntemCommandHandler implements CommandHandler {
+class ReturnItemCommandHandler implements CommandHandler {
     protected $returnItemRepository;
     protected $itemRepository;
     function __construct(ReturnItemRepository $returnItemRepository, ItemRepository $itemRepository)

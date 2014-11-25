@@ -1,4 +1,4 @@
-@extends('layouts.customer')
+@extends('layouts.admin')
 @section('title')
 Order #{{ $order->receiptId }}
 @stop
@@ -11,10 +11,9 @@ Order #{{ $order->receiptId }}
             $price = $purchaseItem->item->price;
             $quantity = $purchaseItem->quantity;
             $total += $price * $quantity;
-            $returnable = 0;
         }
     ?>
-    <table class="order-details">
+    <table class="cp-table">
         <tr>
             <th>Total Price</th>
             <th>Order Date</th>
@@ -34,16 +33,17 @@ Order #{{ $order->receiptId }}
     </table>
     <h2 class="center">Purchased Items</h2>
     @if($returnable)
-        {{ Form::open(['route'=>'updateCart_path', 'class'=>'cart-form']) }}
+        {{ Form::open(['route'=>'returnItems_path']) }}
+        {{ Form::hidden('receiptId', $order->receiptId) }}
     @endif
-        <table class="order-items">
+        <table class="cp-table order-items">
             <tr>
                 <th>Item</th>
                 <th>Price</th>
                 <th>Qty.</th>
                 <th>Subtotal</th>
     @if($returnable)
-                <th>Return</th>
+                <th class="center">Return</th>
                 <th>Return Qty.</th>
     @endif
             </tr>
@@ -59,7 +59,7 @@ Order #{{ $order->receiptId }}
             ?>
             {{ Form::hidden($upc . '[item_upc]', $upc) }}
             <tr>
-                <td class="cart-item">
+                <td class="item-title">
                     {{ $title }}
                 </td>
                 <td class="order-unit-price">
@@ -86,7 +86,7 @@ Order #{{ $order->receiptId }}
         @endforeach
         </table>
     @if($returnable)
-            {{ Form::submit('Return Selected Items') }}
+            <dd class="form-button">{{ Form::submit('Return Selected Items') }}</dd>
         {{ Form::close() }}
     @endif
 @stop

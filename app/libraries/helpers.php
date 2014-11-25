@@ -25,6 +25,7 @@ function generateReceiptId() {
 }
 
 function generateReturnId() {
+    $customerId = Auth::id();
     $date = new DateTime();
-    return $id . $date->getTimestamp();
+    return $customerId . $date->getTimestamp();
 }

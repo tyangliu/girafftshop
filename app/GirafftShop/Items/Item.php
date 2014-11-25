@@ -27,7 +27,7 @@ class Item extends \Eloquent {
 
     public function returnItem()
     {
-        return $this->belongsToMany('GirafftShop\Returns\ReturnItem', 'upc', 'item_upc');
+        return $this->belongsToMany('GirafftShop\OrderReturns\ReturnItem', 'upc', 'item_upc');
     }
 
     public function setPriceAttribute($price)

@@ -4,15 +4,10 @@ class OrderReturn extends \Eloquent {
 	protected $guarded = [];
     protected $table = 'returns';
 
-        public static function make($input) 
+    public static function make($input)
     {
         $return = new static($input);
         return $return;
-    }
-
-    public function getReturnId()
-    {
-        return $this->returnId;
     }
 
     public function setDateAttribute($date)
@@ -20,18 +15,13 @@ class OrderReturn extends \Eloquent {
         $this->attributes['date'] = date("Y-m-d", strtotime($date));
     }
 
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    public function getOrderReceiptId()
-    {
-        return $this->order_receiptId;
-    }
-
     public function order()
     {
-        return $this->belongsTo('Order', 'order_receiptId', 'receiptId');
+        return $this->belongsTo('GirafftShop\Orders\Order', 'order_receiptId', 'receiptId');
+    }
+
+    public function returnItems()
+    {
+        return $this->hasMany('GirafftShop\OrderReturns\ReturnItem', 'return_returnId', 'returnId');
     }
 }

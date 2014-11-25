@@ -1,20 +1,33 @@
 <?php
 
-use GirafftShop\Repos\ItemRepository;
-use GirafftShop\OrderReturns\Forms\MakeReturnForm;
-use GirafftShop\OrderReturns\Commanding\MakeReturnCommand;
-use GirafftShop\OrderReturns\Commanding\ReturnItemCommand;
+use GirafftShop\Repos\OrderReturnRepository;
 
 class ReturnsController extends \BaseController {
 
-	private $makeReturnForm;
-    private $repository;
+    private $orderReturnRepository;
 
-	function __construct(Store $session, MakeReturnForm $makeReturnForm, ItemRepository $repository)
+    function __construct(OrderReturnRepository $orderReturnRepository)
     {
-        $this->session = $session;
-        $this->makeReturnForm = $makeReturnForm;
-        $this->repository = $repository;
+        $this->orderReturnRepository = $orderReturnRepository;
+    }
+
+    public function index()
+    {
+
+        $data['returns'] = $this->orderReturnRepository->getAll();
+
+        return View::make('control_panel.returns.index', $data);
+    }
+
+    public function show($returnId)
+    {
+        $orderReturn = $this->orderReturnRepository->getByField('returnId', $returnId)->first();
+        $returnItems = $orderReturn->returnItems;
+
+        $data['return'] = $orderReturn;
+        $data['returnItems'] = $returnItems;
+
+        return View::make('control_panel.returns.show', $data);
     }
 
 }

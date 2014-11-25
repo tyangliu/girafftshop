@@ -29,16 +29,7 @@ class ReportsController extends BaseController {
         $this->generateReportForm->validate(Input::all());
 
         $processedDate = date('Y-m-d',strtotime(Input::get('date')));
-        /*
-        $data['rows'] =
-            DB::select( DB::raw(
-                "SELECT item_upc, category, price, stock, SUM(quantity) as quantity
-                 FROM orders, purchase_items, items
-                 WHERE date ='" . $processedDate . "' AND upc = item_upc AND receiptId = order_receiptId
-                 GROUP BY item_upc
-                 ORDER BY SUM(quantity) DESC"
-            ));
-        */
+
         $rows =
             DB::select( DB::raw(
                 "SELECT item_upc, category, price, stock, SUM(quantity) as quantity

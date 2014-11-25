@@ -36,7 +36,7 @@ Route::post('signup', [
  * Sign In
  */
 
-Route::post('login', [
+Route::post('/', [
     'as' => 'login_path',
     'before' => 'csrf',
     'uses' => 'SessionsController@store'
@@ -119,6 +119,33 @@ Route::group(['before' => 'auth'], function()
         'uses' => 'DeliveryController@update'
     ]);
 
+    /**
+     * Returnable Orders
+     */
+    Route::get('cp/returnable-orders', [
+        'as' => 'returnableOrders_path',
+        'uses' => 'ProcessReturnController@index'
+    ]);
+    Route::get('cp/returnable-orders/{receiptId}', [
+        'as' => 'showReturnable_path',
+        'uses' => 'ProcessReturnController@show'
+    ]);
+    Route::post('cp/returnable-orders/return-items', [
+        'as' => 'returnItems_path',
+        'uses' => 'ProcessReturnController@store'
+    ]);
+
+    /**
+     * Returns
+     */
+    Route::get('cp/returns', [
+        'as' => 'returns_path',
+        'uses' => 'ReturnsController@index'
+    ]);
+    Route::get('cp/returns/{returnId}', [
+        'as' => 'showReturn_path',
+        'uses' => 'ReturnsController@show'
+    ]);
     /**
      * Daily Sales
      */

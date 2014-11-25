@@ -35,4 +35,12 @@ class OrderRepository extends Repository {
     {
         return $this->model->where('deliveredDate', null)->get();
     }
+
+    public function getReturnable()
+    {
+        $seconds = strtotime(date('Y-m-d')) - (86400 * 15);
+        $date = date('Y-m-d', $seconds);
+
+        return $this->model->where('date', '>=', $date)->get();
+    }
 } 

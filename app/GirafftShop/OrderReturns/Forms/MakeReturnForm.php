@@ -7,7 +7,6 @@ class MakeReturnForm extends FormValidator {
      * @var array
      */
     protected $rules = [
-        'receiptId' => 'required|integer',
-
+        'order_receiptId' => 'required',
     ];
 } 

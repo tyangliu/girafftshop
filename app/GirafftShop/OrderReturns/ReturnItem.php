@@ -1,30 +1,21 @@
 <?php namespace GirafftShop\OrderReturns;
 
 class ReturnItem extends \Eloquent {
-	protected $fillable = [];
+	protected $guarded = [];
 
-    public function getReturnReturnId()
+    public static function add($input)
     {
-        return $this->return_returnId;
-    }
-
-    public function getItemUpc()
-    {
-        return $this->item_upc;
-    }
-
-    public function getQuantity()
-    {
-        return $this->quantity;
+        $returnItem = new static($input);
+        return $returnItem;
     }
 
     public function orderReturn()
     {
-        return $this->belongsTo('OrderReturn', 'return_returnId', 'returnId');
+        return $this->belongsTo('GirafftShop\OrderReturns\OrderReturn', 'return_returnId', 'returnId');
     }
 
     public function item()
     {
-        return $this->hasOne('Item', 'item_upc', 'upc');
+        return $this->hasOne('GirafftShop\Items\Item', 'upc', 'item_upc');
     }
 }
