@@ -59,6 +59,27 @@ class ProcessReturnController extends \BaseController {
             return Redirect::back();
         }
 
+        foreach($returnItems as $upc => $params)
+        {
+            extract($params);
+
+            $purchaseItem = $this->purchaseItemRepository->getByFields([
+                'order_receiptId' => $order_receiptId,
+                'item_upc' => $upc
+            ])->first();
+
+            $purchaseQty = $purchaseItem->quantity;
+
+            $sumReturnQty = $this->getSum($order_receiptId, $upc);
+
+            // if total number of items returned is more than items purchased, give error
+
+            if ($purchaseQty < ($sumReturnQty + $quantity))
+            {
+                return Redirect::back()->withInput();
+            }
+        }
+
         $today = date('Y-m-d');
 
         $returnFields = [
@@ -77,22 +98,6 @@ class ProcessReturnController extends \BaseController {
         {
             extract($params);
 
-            $purchaseItem = $this->purchaseItemRepository->getByFields([
-                'order_receiptId' => $order_receiptId,
-                'item_upc' => 123232
-            ])->first();
-
-            $purchaseQty = $purchaseItem->quantity;
-
-            $sumReturnQty = $this->getSum($orderReturn->returnId, $upc);
-
-            // if total number of items returned is more than items purchased, give error
-
-            if ($purchaseQty < ($sumReturnQty + $quantity))
-            {
-                return Redirect::back()->withInput();
-            }
-
             $this->execute(ReturnItemCommand::class, [
                 'return_returnId' => $orderReturn->returnId,
                 'item_upc'        => $item_upc,
@@ -100,7 +105,7 @@ class ProcessReturnController extends \BaseController {
             ]);
         }
 
-        return Redirect::route('showOrderReturn_path', $order_receiptId);
+        return Redirect::route('showReturnable_path', $order_receiptId);
     }
 
     private function isReturnable($order) {
@@ -109,11 +114,12 @@ class ProcessReturnController extends \BaseController {
         return $days <= 15;
     }
 
-    private function getSum($returnId, $item_upc)
+    private function getSum($receiptId, $item_upc)
     {
         $result = DB::select(DB::raw(
-            "SELECT SUM(quantity) as qtySum FROM return_items
-             WHERE return_returnId ='" . $returnId .
+            "SELECT SUM(quantity) as qtySum FROM return_items ri, returns r
+             WHERE ri.return_returnId = r.returnId
+             AND r.order_receiptId = '" . $receiptId .
             "'AND item_upc =" . $item_upc .
             " GROUP BY item_upc"));
 
