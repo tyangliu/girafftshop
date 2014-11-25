@@ -45,7 +45,6 @@ Order #{{ $order->receiptId }}
                 <th>Qty.</th>
                 <th>Subtotal</th>
     @if($returnable)
-                <th class="center">Return</th>
                 <th>Return Qty.</th>
     @endif
             </tr>
@@ -72,10 +71,6 @@ Order #{{ $order->receiptId }}
                 </td>
                 <td class="order-subtotal">${{ intToMoney($subtotal) }}</td>
     @if($returnable)
-                <td class="order-return">
-                    <input name="{{ $upc . '[return]' }}" type="checkbox" value="1" id="{{ $upc . '[return]' }}">
-                    <label for="{{ $upc . '[return]' }}"><span></span></label>
-                </td>
                 <td class="return-quantity">
                     {{ Form::label($upc . '[quantity]', 'Quantity', ['class' => 'hidden']) }}
                     {{ Form::number($upc . '[quantity]', null, [

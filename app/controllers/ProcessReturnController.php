@@ -50,7 +50,9 @@ class ProcessReturnController extends \BaseController {
         // Remove inputs without return == 1
         $returnItems = array_where($returnItems, function($key, $value)
         {
-            return array_key_exists('return', $value) && ($value['quantity'] > 0);
+            return array_key_exists('quantity', $value)
+                && $value['quantity'] != ''
+                && ($value['quantity'] > 0);
         });
 
         // redirect if no items are selected
