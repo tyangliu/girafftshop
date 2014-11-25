@@ -40,7 +40,7 @@ Order #{{ $order->receiptId }}
                 <?php
                     $price = $purchaseItem->item->price;
                     $formattedPrice = $purchaseItem->item->present()->price;
-                    $quantity = $purchaseItem->quantity;
+                    $quantity = $purchaseItem->present()->quantity;
                     $upc = $purchaseItem->item->upc;
                     $title = $purchaseItem->item->title;
                     $subtotal = $price * $quantity;

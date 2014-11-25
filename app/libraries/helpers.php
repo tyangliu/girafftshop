@@ -29,3 +29,27 @@ function generateReturnId() {
     $date = new DateTime();
     return $customerId . $date->getTimestamp();
 }
+
+function isReturnable($order) {
+    $seconds = strtotime(date('Y-m-d')) - strtotime($order->date);
+    $days = ceil($seconds / 86400);
+    return $days <= 15;
+}
+
+function getSum($receiptId, $item_upc)
+{
+    $result = DB::select(DB::raw(
+        "SELECT SUM(quantity) as qtySum FROM return_items ri, returns r
+             WHERE ri.return_returnId = r.returnId
+             AND r.order_receiptId = '" . $receiptId .
+        "'AND item_upc =" . $item_upc .
+        " GROUP BY item_upc"));
+
+    if (empty($result)) {
+        $sum = 0;
+    }
+    else {
+        $sum = $result[0]->qtySum;
+    }
+    return $sum;
+}

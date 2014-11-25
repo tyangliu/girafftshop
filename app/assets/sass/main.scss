@@ -238,6 +238,14 @@ button:active, input[type=submit]:active {
 
 }
 
+.original {
+  color: #FF725F;
+}
+
+.remaining {
+  font-weight: $bold-weight;
+}
+
 #footer {
   text-align: center;
   padding: 40px 0;

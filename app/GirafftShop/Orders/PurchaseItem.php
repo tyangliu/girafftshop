@@ -1,6 +1,13 @@
 <?php namespace GirafftShop\Orders;
 
+use PresentableTrait;
+
 class PurchaseItem extends \Eloquent {
+
+    use PresentableTrait;
+
+    protected $presenter = 'GirafftShop\Presenters\PurchaseItemPresenter';
+
 	protected $guarded = [];
 
     public function order()
@@ -19,4 +26,10 @@ class PurchaseItem extends \Eloquent {
 
         return $purchaseItem;
     }
+
+    public function getRemaining()
+    {
+        return $this->quantity - getSum($this->order_receiptId, $this->item_upc);
+    }
+
 }

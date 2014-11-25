@@ -37,7 +37,7 @@ class ProcessReturnController extends \BaseController {
 
         $data['order'] = $order;
         $data['purchaseItems'] = $purchaseItems;
-        $data['returnable'] = $this->isReturnable($order);
+        $data['returnable'] = isReturnable($order);
 
         return View::make('control_panel.returnable-orders.show', $data);
     }
@@ -70,7 +70,7 @@ class ProcessReturnController extends \BaseController {
 
             $purchaseQty = $purchaseItem->quantity;
 
-            $sumReturnQty = $this->getSum($order_receiptId, $upc);
+            $sumReturnQty = getSum($order_receiptId, $upc);
 
             // if total number of items returned is more than items purchased, give error
 
@@ -106,30 +106,6 @@ class ProcessReturnController extends \BaseController {
         }
 
         return Redirect::route('showReturnable_path', $order_receiptId);
-    }
-
-    private function isReturnable($order) {
-        $seconds = strtotime(date('Y-m-d')) - strtotime($order->date);
-        $days = ceil($seconds / 86400);
-        return $days <= 15;
-    }
-
-    private function getSum($receiptId, $item_upc)
-    {
-        $result = DB::select(DB::raw(
-            "SELECT SUM(quantity) as qtySum FROM return_items ri, returns r
-             WHERE ri.return_returnId = r.returnId
-             AND r.order_receiptId = '" . $receiptId .
-            "'AND item_upc =" . $item_upc .
-            " GROUP BY item_upc"));
-
-        if (empty($result)) {
-            $sum = 0;
-        }
-        else {
-            $sum = $result[0]->qtySum;
-        }
-        return $sum;
     }
 
 }
