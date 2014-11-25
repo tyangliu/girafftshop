@@ -25,6 +25,38 @@ Order #{{ $order->receiptId }}
             <td>{{ formatDate($order->expectedDate) }}</td>
         </tr>
     </table>
+    <h2 class="center">Purchased Items</h2>
+            <table class="cp-table order-items">
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Qty.</th>
+                    <th>Subtotal</th>
+                </tr>
+
+            @foreach( $purchaseItems as $purchaseItem )
+                <?php
+                    $price = $purchaseItem->item->price;
+                    $formattedPrice = $purchaseItem->item->present()->price;
+                    $quantity = $purchaseItem->quantity;
+                    $upc = $purchaseItem->item->upc;
+                    $title = $purchaseItem->item->title;
+                    $subtotal = $price * $quantity;
+                ?>
+                <tr>
+                    <td class="item-title">
+                        {{ $title }}
+                    </td>
+                    <td class="order-unit-price">
+                        {{ $formattedPrice }}
+                    </td>
+                    <td>
+                        {{ $quantity }}
+                    </td>
+                    <td class="order-subtotal">${{ intToMoney($subtotal) }}</td>
+                </tr>
+            @endforeach
+            </table>
 
     <div class="center">
         {{ Form::open(['route' => ['cp_showOrder_path', $order->receiptId]]) }}
