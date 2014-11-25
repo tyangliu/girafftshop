@@ -11,9 +11,9 @@ Returnable Orders
 
 	    <tr>
             <th>Receipt ID</th>
-            <th>Ordered Date</th>
+            <th>Order Date</th>
             <th>Estimated Delivery Date</th>
-            <th>Customer Username</th>
+            <th>Customer</th>
         </tr>
 		@foreach($orders as $order)
             <tr>

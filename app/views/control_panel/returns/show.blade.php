@@ -17,12 +17,14 @@ Return #{{ $return->returnId }}
         <tr>
             <th>Total Refund</th>
             <th>Return Date</th>
-            <th>Receipt Id</th>
+            <th>Receipt ID</th>
+            <th>Customer</th>
         </tr>
         <tr>
             <td>${{ intToMoney($total) }}</td>
             <td>{{ formatDate($return->date) }}</td>
             <td>{{ $return->order_receiptId }}</td>
+            <td>{{ $return->order->cUsername }}</td>
         </tr>
     </table>
 

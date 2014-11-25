@@ -18,11 +18,13 @@ Order #{{ $order->receiptId }}
             <th>Total Price</th>
             <th>Order Date</th>
             <th>Estimated Delivery Date</th>
+            <th>Customer</th>
         </tr>
         <tr>
             <td>${{ intToMoney($total) }}</td>
             <td>{{ formatDate($order->date) }}</td>
             <td>{{ formatDate($order->expectedDate) }}</td>
+            <td>{{ $order->cUsername }}</td>
         </tr>
     </table>
     <h2 class="center">Purchased Items</h2>

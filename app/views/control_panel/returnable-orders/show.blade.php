@@ -21,6 +21,7 @@ Order #{{ $order->receiptId }}
             @if($order->deliveredDate != null)
             <th>Delivered On</th>
             @endif
+            <th>Customer</th>
         </tr>
         <tr>
             <td>${{ intToMoney($total) }}</td>
@@ -29,6 +30,7 @@ Order #{{ $order->receiptId }}
             @if($order->deliveredDate != null)
             <td>{{ formatDate($order->deliveredDate) }}</td>
             @endif
+            <td>{{ $order->cUsername }}</td>
         </tr>
     </table>
     <h2 class="center">Purchased Items</h2>
