@@ -26,7 +26,7 @@ Return #{{ $return->returnId }}
         </tr>
     </table>
 
-<h2 class="center">Purchased Items</h2>
+<h2 class="center">Returned Items</h2>
 
         <table class="cp-table order-items">
             <tr>
