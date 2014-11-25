@@ -9,8 +9,8 @@ class SearchItemForm extends FormValidator {
      * @var array
      */
     protected $rules = [
-        'category' => 'alpha_num',
+        'category' => '',
         'title' => '',
-        'leadSingerName' => 'alpha'
+        'leadSingerName' => ''
     ];
 } 
