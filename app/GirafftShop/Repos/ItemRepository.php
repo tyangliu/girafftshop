@@ -20,7 +20,13 @@ class ItemRepository extends Repository {
     {
         $item = $this->getByField('upc', $upc)->first();
 
-        $item->stock = $item->stock + $stock;
+        if ($stock != '')
+        {
+            if ($stock + $item->stock < 0)
+                $item->stock = 0;
+
+            $item->stock = $item->stock + $stock;
+        }
 
         if ($price != '') {
             $item->price = $price;
