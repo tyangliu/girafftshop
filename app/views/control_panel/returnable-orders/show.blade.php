@@ -83,7 +83,7 @@ Order #{{ $order->receiptId }}
         @endforeach
         </table>
     @if($returnable)
-            <dd class="form-button">{{ Form::submit('Return Selected Items') }}</dd>
+            <dd class="form-button">{{ Form::submit('Return Items') }}</dd>
         {{ Form::close() }}
     @endif
 @stop
