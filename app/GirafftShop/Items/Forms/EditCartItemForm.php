@@ -5,7 +5,7 @@ use FormValidator;
 
 class EditCartItemForm extends FormValidator {
     protected $rules = [
-        'item_upc' => 'required|integer',
+        'item_upc' => 'required|numeric',
         'quantity' => 'required|integer|min:1'
     ];
 } 

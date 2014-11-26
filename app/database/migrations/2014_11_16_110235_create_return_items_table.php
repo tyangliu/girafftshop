@@ -19,7 +19,7 @@ class CreateReturnItemsTable extends Migration {
             $table->foreign('return_returnId')
                 ->references('returnId')
                 ->on('returns');
-			$table->integer('item_upc')->unsigned();
+			$table->string('item_upc', 64);
             $table->foreign('item_upc')
                 ->references('upc')
                 ->on('items');

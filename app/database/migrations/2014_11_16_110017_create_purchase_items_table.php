@@ -19,7 +19,7 @@ class CreatePurchaseItemsTable extends Migration {
             $table->foreign('order_receiptId')
                 ->references('receiptId')->on('orders')
                 ->onDelete('cascade');
-            $table->integer('item_upc')->unsigned();
+            $table->string('item_upc', 64);
             $table->foreign('item_upc')
                 ->references('upc')->on('items')
                 ->onDelete('cascade');

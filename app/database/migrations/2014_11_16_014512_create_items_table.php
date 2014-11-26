@@ -15,7 +15,7 @@ class CreateItemsTable extends Migration {
 		Schema::create('items', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('upc')->unsigned()->unique();
+			$table->string('upc', 64)->unique();
 			$table->string('title', 64);
 			$table->string('type', 64);
 			$table->string('category', 64);

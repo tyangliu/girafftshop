@@ -15,7 +15,7 @@ class CreateItemLeadSingersTable extends Migration {
 		Schema::create('item_lead_singers', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->integer('item_upc')->unsigned();
+            $table->string('item_upc', 64);
             $table->foreign('item_upc')
                   ->references('upc')->on('items')
                   ->onDelete('cascade');

@@ -9,7 +9,7 @@ class AddItemForm extends FormValidator {
      * @var array
      */
     protected $rules = [
-        'upc' => 'required|integer',
+        'upc' => 'required|numeric',
         'title' => 'required',
         'type' => 'required|alpha|between:2,3',
         'category' => 'required',
