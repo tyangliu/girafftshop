@@ -6,6 +6,15 @@ Top Selling Items
 @section('content')
 <h1 class="order-receiptId">Top Selling Items</h1>
 
+<?php $formErrors = $errors->all() ?>
+    @if ($formErrors)
+        <ul class="error">
+            @foreach($formErrors as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
 <div class="center">
     {{ Form::open(['route' => 'showTop_path', 'method' => 'get']) }}
     <dl>

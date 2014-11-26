@@ -7,6 +7,8 @@ use GirafftShop\Items\Commanding\EditItemCommand;
 use GirafftShop\LeadSingers\Commanding\AddLeadSingerCommand;
 use GirafftShop\Repos\ItemRepository;
 
+use GirafftShop\Core\Exception\DatabaseException;
+
 class ItemsController extends BaseController {
 
     private $addItemForm;
@@ -43,9 +45,17 @@ class ItemsController extends BaseController {
     {
         $this->addItemForm->validate(Input::all());
 
+        $upc = Input::get('upc');
+
+        $repeat = $this->itemRepository->getByField('upc', $upc);
+
+        // error if repeat item
+        if (!$repeat->isEmpty()) 
+            throw new DatabaseException('Database Integrity Constraint', array('message' => 'DATABASE INTEGRITY CONSTRAINT VIOLATED!!!!!!!!'));
+            // return Redirect::back();
+
         $this->execute(AddItemCommand::class);
 
-        $upc = Input::get('upc');
         $leadSingerName = Input::get('leadSingerName');
 
         if ($leadSingerName != '') {

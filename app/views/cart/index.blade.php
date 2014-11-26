@@ -5,7 +5,19 @@ Shopping Cart
 @stop
 
 @section('content')
+
     <h1>Shopping Cart</h1>
+
+<?php $formErrors = $errors->all() ?>
+@if ($formErrors)
+    <ul class="error">
+        @foreach($formErrors as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
+
+
 @if(!empty($items))
 
     {{ Form::open(['route'=>'updateCart_path', 'class'=>'cart-form']) }}

@@ -36,6 +36,9 @@ class DeliveryController extends \BaseController {
 
     public function update($receiptId)
     {
+
+        $this->editOrderForm->validate(Input::all());
+
         $input = array_add(Input::all(), 'receiptId', $receiptId);
 
         $this->execute(EditOrderCommand::class, $input);

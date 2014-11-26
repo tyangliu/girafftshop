@@ -7,6 +7,8 @@ use GirafftShop\OrderReturns\Forms\MakeReturnForm;
 use GirafftShop\OrderReturns\Commanding\MakeReturnCommand;
 use GirafftShop\OrderReturns\Commanding\ReturnItemCommand;
 
+use GirafftShop\Core\Exception\QuantityException;
+
 class ProcessReturnController extends \BaseController {
 
 	private $makeReturnForm;
@@ -58,7 +60,8 @@ class ProcessReturnController extends \BaseController {
         // redirect if no items are selected
         if (empty($returnItems))
         {
-            return Redirect::back();
+            throw new QuantityException('Quantity Constraint', array('message' => 'No valid returns were found.'));
+            // return Redirect::back();
         }
 
         foreach($returnItems as $upc => $params)
@@ -78,7 +81,8 @@ class ProcessReturnController extends \BaseController {
 
             if ($purchaseQty < ($sumReturnQty + $quantity))
             {
-                return Redirect::back()->withInput();
+                throw new QuantityException('Quantity Constraint', array('message' => 'The quantity specified is larger than the purchased quantity.'));
+                // return Redirect::back()->withInput();
             }
         }
 
@@ -108,6 +112,7 @@ class ProcessReturnController extends \BaseController {
         }
 
         return Redirect::route('showReturnable_path', $order_receiptId);
+
     }
 
 }

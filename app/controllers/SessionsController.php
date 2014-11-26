@@ -2,6 +2,8 @@
 
 use GirafftShop\Customers\Forms\SignInForm;
 
+use Illuminate\Support\MessageBag;
+
 /**
  * Class SessionsController
  */
@@ -58,8 +60,11 @@ class SessionsController extends \BaseController {
 
         if ( $attempt ) return Redirect::intended('/');
 
+
+        $errors = new MessageBag(['password' => ['Username and/or password invalid.']]);
+
         //TODO: add error message
-        return Redirect::back()->withInput(Input::except('password'));
+        return Redirect::back()->withInput(Input::except('password'))->withErrors($errors);
 	}
 
 	/**

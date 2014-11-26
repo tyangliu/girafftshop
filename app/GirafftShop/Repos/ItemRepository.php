@@ -45,13 +45,13 @@ class ItemRepository extends Repository {
             {
                 $query =
                     $query->whereHas('leadSinger', function ($q) use ($fieldValue) {
-                        $q->where('name', '=', $fieldValue);
+                        $q->where('name', 'LIKE', '%' . $fieldValue . '%');
                     });
 
             }
             else
             {
-                $query = $query->where($fieldName, $fieldValue);
+                $query = $query->where($fieldName, 'LIKE', '%' . $fieldValue . '%');
             }
         }
 

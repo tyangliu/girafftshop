@@ -56,6 +56,16 @@ App::error(function(\Laracasts\Validation\FormValidationException $exception, $c
    return Redirect::back()->withInput()->withErrors($exception->getErrors());
 });
 
+App::error(function(\GirafftShop\Core\Exception\DatabaseException $exception, $code)
+{
+   return Redirect::back()->withInput()->withErrors($exception->getErrors());
+});
+
+App::error(function(\GirafftShop\Core\Exception\QuantityException $exception, $code)
+{
+   return Redirect::back()->withInput()->withErrors($exception->getErrors());
+});
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler

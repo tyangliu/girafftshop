@@ -9,7 +9,7 @@ Add songs for {{ $upc }}
 
 <?php $formErrors = $errors->all() ?>
 @if ($formErrors)
-    <ul>
+    <ul class="error">
         @foreach($formErrors as $error)
             <li>{{ $error }}</li>
         @endforeach

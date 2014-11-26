@@ -6,6 +6,15 @@ Generate Sales Report
 @section('content')
 <h1 class="order-receiptId">Generate Sales Report</h1>
 
+	<?php $formErrors = $errors->all() ?>
+    @if ($formErrors)
+        <ul class="error">
+            @foreach($formErrors as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
 <div class="center">
     {{ Form::open(['route' => 'showSales_path', 'method' => 'get']) }}
     <dl>

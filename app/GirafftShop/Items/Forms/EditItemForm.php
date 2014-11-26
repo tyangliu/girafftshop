@@ -10,7 +10,7 @@ class EditItemForm extends FormValidator {
      */
     protected $rules = [
         'upc'   => 'required|numeric',
-        'price' => 'regex:/[0-9]*(\.[0-9][0-9])?/',
+        'price' => 'regex:/^\d*(\.\d{2})?$/',
         'stock' => 'integer'
     ];
 } 

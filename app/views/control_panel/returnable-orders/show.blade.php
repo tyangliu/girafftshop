@@ -4,6 +4,15 @@ Order #{{ $order->receiptId }}
 @stop
 @section('content')
     <h1 class="order-receiptId">Order #{{ $order->receiptId }}</h1>
+    <?php $formErrors = $errors->all() ?>
+    @if ($formErrors)
+        <ul class="error">
+            @foreach($formErrors as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
     <?php
         $total = 0;
         foreach($purchaseItems as $purchaseItem)

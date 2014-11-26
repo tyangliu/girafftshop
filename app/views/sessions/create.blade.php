@@ -15,6 +15,17 @@ Sign In
 @section('content')
     <h1 class="logo">{{ HTML::image('images/logo_textOnly.svg', 'GirafftShop') }}</h1>
 
+    <?php $formErrors = $errors->all() ?>
+
+    @if ($formErrors)
+        <ul class="error">
+            @foreach($formErrors as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
+
     {{ Form::open(array('route' => 'login_path')) }}
         <dl>
             <dt>{{ Form::label('username', 'Username', ['class' => 'hidden']) }}</dt>

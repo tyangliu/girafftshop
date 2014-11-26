@@ -5,7 +5,18 @@
 @stop
 
 @section('content')
+
     <h1>{{ $item->title }}</h1>
+
+<?php $formErrors = $errors->all() ?>
+@if ($formErrors)
+    <ul class="error">
+        @foreach($formErrors as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
+
         <table class="cp-table">
             <tr>
                 <th>UPC</th>

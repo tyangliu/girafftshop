@@ -15,7 +15,7 @@ class AddItemForm extends FormValidator {
         'category' => 'required',
         'company' => 'required',
         'year' => 'required|integer|digits:4',
-        'price' => ['required', 'regex:/[0-9]*(\.[0-9][0-9])?/'],
+        'price' => ['required', 'regex:/^\d*(\.\d{2})?$/'],
         'stock' => 'required|integer|min:0',
         'leadSingerName' => ''
     ];
