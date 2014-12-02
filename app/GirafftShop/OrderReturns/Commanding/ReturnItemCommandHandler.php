@@ -29,7 +29,7 @@ class ReturnItemCommandHandler implements CommandHandler {
         // decrease item stock by quantity
         $this->itemRepository->update(
             $command->item_upc,
-            $command->quantity * -1 // add negative of quantity to stock
+            $command->quantity
         );
         return $returnItem;
     }
